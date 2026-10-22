@@ -1,0 +1,3317 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="theme-color" content="#B71C1C">
+<title>Manuel d'Informatique — 2ème Sciences + TutorBot</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://js.puter.com/v2/"></script>
+<style>
+/* ==========================================================
+   ULTRA MAX PRO CSS - Manuel Info 2ème Sciences + TutorBot
+   ========================================================== */
+
+/* 1. RESET & VARIABLES */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --primary: #B71C1C;
+  --primary-light: #E53935;
+  --primary-dark: #7F1010;
+  --accent: #FFC000;
+  --bg: #fffafa;
+  --text: #1a1a2e;
+  --text2: #555;
+  --border: #e8e8ec;
+  --card: #ffffff;
+  --radius: 14px;
+  --shadow: 0 2px 8px rgba(0,0,0,.06);
+  
+  --bot-bg: rgba(255, 255, 255, 0.4);
+  --bot-blur: blur(20px);
+  --bot-bubble: rgba(255, 255, 255, 0.85);
+  --user-bubble: linear-gradient(135deg, var(--primary), var(--primary-light));
+  
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Cairo', Arial, sans-serif;
+  --mono: 'SF Mono', Consolas, Monaco, monospace;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f11;
+  --text: #e8e8e8;
+  --text2: #aaa;
+  --border: #2a2a2a;
+  --card: #1a1a1a;
+  --bot-bg: rgba(15, 15, 17, 0.4);
+  --bot-bubble: rgba(44, 44, 46, 0.9);
+}
+
+/* 2. BASE */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 70px;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  transition: background .3s, color .3s;
+  padding-bottom: 20px;
+}
+
+img, svg, video, canvas, table, pre { max-width: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.3; font-weight: 700; color: var(--text);
+  word-wrap: break-word; overflow-wrap: break-word;
+}
+
+p, li, td, th, div { word-wrap: break-word; overflow-wrap: break-word; }
+a { color: var(--primary); text-decoration: none; }
+
+code {
+  font-family: var(--mono); background: #eef2f5; color: #c0392b;
+  padding: 2px 5px; border-radius: 4px; font-size: .85em; word-break: break-word;
+}
+[data-theme="dark"] code { background: #2a2a2a; color: #ff8a80; }
+
+pre {
+  font-family: var(--mono); background: #1e1e2e; color: #e0e0e0;
+  padding: 12px; border-radius: 8px; overflow-x: auto; margin: 10px 0;
+  font-size: .75rem; line-height: 1.5; box-shadow: inset 0 0 0 1px #333;
+  -webkit-overflow-scrolling: touch; white-space: pre-wrap; word-break: break-word;
+}
+pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+
+/* 3. HEADER & NAV */
+.site-header {
+  color: white; padding: 20px 12px; text-align: center;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary) 50%, var(--primary-light));
+  box-shadow: 0 3px 12px rgba(183,28,28,.25);
+  width: 100%; overflow: hidden;
+}
+.site-header h1 { font-size: 1.1rem; margin-bottom: 4px; color: white; line-height: 1.3; }
+.site-header p { font-size: .78rem; opacity: .92; line-height: 1.4; }
+
+.top-nav {
+  background: var(--primary-dark); position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15); overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none; width: 100%;
+}
+.top-nav::-webkit-scrollbar { display: none; }
+.top-nav ul {
+  list-style: none; display: flex; flex-wrap: nowrap; gap: 2px;
+  padding: 5px 6px; min-width: max-content; margin: 0;
+}
+.top-nav ul li a {
+  display: block; color: rgba(255,255,255,.88); padding: 8px 11px;
+  text-decoration: none; font-size: .72rem; font-weight: 500;
+  white-space: nowrap; border-radius: 7px; transition: all .2s;
+}
+.top-nav ul li a.active, .top-nav ul li a:active { background: var(--primary-light); color: white; }
+.top-nav ul li a.ai-btn {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  box-shadow: 0 2px 8px rgba(229,57,53,.4);
+}
+
+/* 4. MAIN & SECTIONS */
+main { max-width: 100%; width: 100%; margin: 0 auto; padding: 10px 8px 40px; }
+@media (min-width: 600px) { main { padding: 16px 14px 40px; max-width: 920px; } }
+
+.section {
+  background: var(--card); border-radius: var(--radius);
+  padding: 16px 12px; margin: 12px 0; box-shadow: var(--shadow);
+  border-left: 4px solid var(--primary-light); width: 100%; overflow: hidden;
+}
+.section > * { max-width: 100%; }
+.section h2 { color: var(--primary); font-size: 1rem; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid var(--primary-light); line-height: 1.35; }
+.section h3 { color: var(--primary); font-size: .9rem; margin: 16px 0 8px; padding: 7px 10px; background: linear-gradient(90deg, rgba(229,57,53,.08), transparent 90%); border-left: 3px solid var(--primary-light); border-radius: 0 7px 7px 0; font-weight: 700; line-height: 1.4; }
+.section h4 { color: var(--primary-dark); font-size: .85rem; margin: 12px 0 6px; padding-bottom: 4px; border-bottom: 1px dashed rgba(183,28,28,.2); line-height: 1.4; }
+.section p { font-size: .88rem; margin: 6px 0; }
+.section ul, .section ol { margin-left: 18px; margin-right: 4px; font-size: .88rem; }
+.section li { margin: 3px 0; }
+
+/* 5. ENCADRÉS */
+.encadre {
+  border-radius: 10px; padding: 12px 12px 12px 44px; margin: 12px 0;
+  position: relative; background: var(--card); box-shadow: var(--shadow);
+  font-size: .85rem; width: 100%; overflow: hidden;
+}
+.encadre::before {
+  content: ""; position: absolute; left: 10px; top: 12px;
+  width: 26px; height: 26px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center; font-size: .9rem;
+}
+.encadre h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; border: none; padding: 0; }
+.encadre p { margin: 4px 0; font-size: .85rem; }
+.encadre ul, .encadre ol { margin-left: 14px; }
+.encadre li { margin: 2px 0; font-size: .85rem; }
+
+.encadre.definition { border-left: 4px solid #1976D2; background: linear-gradient(135deg, rgba(227,242,253,.5), transparent); }
+.encadre.definition::before { background: #1976D2; content: "📘"; }
+.encadre.definition h4 { color: #0D47A1; }
+
+.encadre.exemple { border-left: 4px solid #2E7D32; background: linear-gradient(135deg, rgba(232,245,233,.5), transparent); }
+.encadre.exemple::before { background: #2E7D32; content: "✏️"; }
+.encadre.exemple h4 { color: #1B5E20; }
+
+.encadre.remarque, .encadre.rappel { border-left: 4px solid #F9A825; background: linear-gradient(135deg, rgba(255,248,225,.5), transparent); }
+.encadre.remarque::before { background: #F9A825; content: "💬"; }
+.encadre.rappel::before { background: #F9A825; content: "🔄"; }
+.encadre.remarque h4, .encadre.rappel h4 { color: #8f6b00; }
+
+.encadre.piege { border-left: 4px solid #c62828; background: linear-gradient(135deg, rgba(255,235,238,.5), transparent); }
+.encadre.piege::before { background: #c62828; content: "⚠️"; }
+.encadre.piege h4 { color: #b71c1c; }
+
+.encadre.retenir { border-left: 4px solid var(--accent); background: linear-gradient(135deg, rgba(255,253,231,.6), transparent); }
+.encadre.retenir::before { background: var(--accent); content: "🔑"; }
+.encadre.retenir h4 { color: #8f6b00; }
+
+.encadre.astuce { border-left: 4px solid #8E24AA; background: linear-gradient(135deg, rgba(243,229,245,.5), transparent); }
+.encadre.astuce::before { background: #8E24AA; content: "💡"; }
+.encadre.astuce h4 { color: #6A1B9A; }
+
+/* 6. TABLES */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8px 0; border-radius: 8px; box-shadow: var(--shadow); max-width: 100%; width: 100%; }
+table.tbl { width: 100%; border-collapse: collapse; background: var(--card); font-size: .75rem; min-width: 300px; }
+table.tbl thead th { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 8px 6px; text-align: left; font-size: .72rem; white-space: normal; }
+table.tbl tbody td { padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.tbl tbody tr:nth-child(even) { background: rgba(229,57,53,.04); }
+
+table.duo-table { width: 100%; border-collapse: collapse; margin: 8px 0; background: var(--card); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); font-size: .72rem; }
+table.duo-table th { background: var(--primary-dark); color: white; padding: 7px 8px; text-align: left; font-size: .72rem; }
+table.duo-table th:first-child { background: #6A1B9A; }
+table.duo-table td { padding: 7px 8px; vertical-align: top; border-bottom: 1px solid var(--border); }
+table.duo-table td.algo pre { background: #2a1a3e; margin: 0; }
+table.duo-table td.python pre { background: #1e1e2e; margin: 0; }
+table.duo-table td pre { font-size: .65rem; padding: 6px; }
+
+@media (max-width: 600px) {
+  table.duo-table, table.duo-table tbody, table.duo-table tr, table.duo-table td, table.duo-table th { display: block; width: 100%; }
+  table.duo-table thead { display: none; }
+  table.duo-table tr { margin-bottom: 10px; border: 2px solid var(--primary-dark); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+  table.duo-table td { border-bottom: 1px solid var(--border); position: relative; padding-top: 30px; }
+  table.duo-table td::before { content: "📘 ALGORITHME"; position: absolute; top: 0; left: 0; right: 0; background: #6A1B9A; color: white; padding: 4px 10px; font-size: .68rem; font-weight: 700; }
+  table.duo-table td.python::before { content: "🐍 PYTHON"; background: var(--primary-dark); }
+  table.duo-table td.algo::before { content: "📘 ALGORITHME"; background: #6A1B9A; }
+  table.duo-table td pre { font-size: .7rem; white-space: pre-wrap; word-break: break-word; }
+}
+
+table.tdo-inline, table.trace-table, table.verite-table {
+  width: 100%; border-collapse: collapse; margin: 8px 0; font-size: .75rem; background: var(--card); border: 1px solid #c8d4e0;
+}
+table.tdo-inline th, table.trace-table th, table.verite-table th { background: #2E75B6; color: white; padding: 6px 8px; text-align: left; font-size: .72rem; }
+table.trace-table th, table.verite-table th { background: #6A1B9A; }
+table.tdo-inline td, table.trace-table td, table.verite-table td { padding: 5px 8px; border: 1px solid #d0d7e2; }
+table.tdo-inline tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+table.verite-table td { text-align: center; }
+table.verite-table td.vrai { color: #2E7D32; font-weight: 700; }
+table.verite-table td.faux { color: #c62828; font-weight: 700; }
+
+/* 7. SCHÉMAS (Grids) */
+.schema-cacv, .schema-4, .types-grid, .schema-boucle { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; width: 100%; }
+.schema-cacv .etape, .schema-4 .comp, .type-card, .schema-boucle .bloc { background: linear-gradient(135deg, rgba(252,228,236,.6), var(--card)); border-radius: 8px; padding: 12px 8px; text-align: center; position: relative; box-shadow: var(--shadow); overflow: hidden; }
+.schema-cacv .etape { border-top: 3px solid var(--primary-light); }
+.schema-4 .comp { border: 2px solid rgba(229,57,53,.3); }
+.type-card { border-top: 3px solid var(--primary-light); }
+.schema-boucle .bloc { border: 2px solid var(--primary-light); }
+
+.schema-cacv .num { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--primary); color: white; border-radius: 50%; font-weight: 700; font-size: .68rem; line-height: 20px; }
+.schema-cacv .icon, .schema-4 .icon, .type-card .icon { font-size: 1.4rem; display: block; margin: 5px 0; }
+.schema-cacv h4, .schema-4 h4, .type-card h4 { color: var(--primary); font-size: .78rem; margin-bottom: 3px; }
+.schema-cacv p, .schema-4 p { font-size: .68rem; color: var(--text2); line-height: 1.4; }
+
+.schema-ordi { background: linear-gradient(135deg, rgba(252,228,236,.4), transparent); border: 2px solid var(--primary-light); border-radius: 10px; padding: 12px 8px; margin: 12px 0; width: 100%; }
+.schema-ordi .ligne { display: flex; justify-content: center; align-items: center; gap: 5px; flex-wrap: wrap; }
+.schema-ordi .bloc { background: var(--card); border: 2px solid var(--primary-light); border-radius: 8px; padding: 8px 6px; text-align: center; min-width: 65px; flex: 1; }
+.schema-ordi .bloc-central { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+.schema-ordi .bloc-central strong { color: white; }
+.schema-ordi .bloc strong { display: block; margin-bottom: 2px; color: var(--primary); font-size: .7rem; }
+.schema-ordi .bloc small { color: var(--text2); font-size: .62rem; }
+.schema-ordi .bloc-central small { color: rgba(255,255,255,.85); }
+.schema-ordi .fleche { font-size: 1rem; color: var(--primary-light); font-weight: bold; }
+
+.schema-decision { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 10px 0; width: 100%; }
+.schema-decision .schema-box { background: linear-gradient(135deg, rgba(252,228,236,.6), var(--card)); border: 2px solid var(--primary-light); border-radius: 8px; padding: 10px; text-align: center; }
+.schema-decision .schema-box h4 { color: var(--primary); margin-bottom: 8px; border-bottom: 2px solid var(--primary-light); padding-bottom: 5px; font-size: .82rem; }
+.schema-decision .flow { font-family: var(--mono); line-height: 1.7; font-size: .75rem; }
+.schema-decision .test, .schema-decision .action, .schema-decision .action-no { display: inline-block; padding: 3px 8px; border-radius: 5px; font-weight: 700; font-size: .72rem; }
+.schema-decision .test { background: var(--accent); color: #333; }
+.schema-decision .action { background: #c8e6c9; color: #1B5E20; }
+.schema-decision .action-no { background: #ffcdd2; color: var(--primary); }
+
+@media (min-width: 600px) {
+  .schema-4 { grid-template-columns: repeat(4,1fr); }
+  .types-grid { grid-template-columns: repeat(3,1fr); }
+  .schema-cacv { grid-template-columns: repeat(4,1fr); }
+  .schema-decision { grid-template-columns: 1fr 1fr; }
+  .schema-boucle { grid-template-columns: repeat(4,1fr); }
+}
+
+/* 8. HEADER & CHAP-NAV */
+.partie-header { color: white; padding: 18px 14px; border-radius: var(--radius); margin-bottom: 12px; box-shadow: 0 3px 12px rgba(0,0,0,.15); width: 100%; }
+.partie-header h1 { font-size: 1.05rem; margin-bottom: 3px; color: white; line-height: 1.35; }
+.partie-header .sous-titre { opacity: .92; font-size: .78rem; line-height: 1.4; }
+
+.chap-nav { display: flex; flex-direction: column; gap: 6px; margin-top: 16px; padding: 10px; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); width: 100%; }
+.chap-nav a { padding: 10px 12px; border-radius: 8px; text-decoration: none; font-weight: 700; color: white; font-size: .82rem; text-align: center; min-height: 40px; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+.chap-nav a.prev { background: linear-gradient(135deg, #607D8B, #78909C); }
+.chap-nav a.next { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); }
+.chap-nav a.sommaire { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+.chap-nav a:active { transform: scale(.97); }
+@media (min-width: 600px) { .chap-nav { flex-direction: row; } .chap-nav a { flex: 1; } }
+
+/* 9. TUTORBOT - ULTRA GLASSMORPHISM */
+.tutor-fab {
+  position: fixed; bottom: 16px; right: 16px; width: 58px; height: 58px;
+  border-radius: 50%; background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: white; border: 2px solid rgba(255,255,255,0.2); font-size: 1.3rem; cursor: pointer;
+  box-shadow: 0 6px 20px rgba(183,28,28,.4); z-index: 500;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .2s; animation: fab-pulse 2s infinite;
+}
+.tutor-fab:active { transform: scale(.9); }
+.tutor-fab::after {
+  content: ''; position: absolute; top: 2px; right: 2px; width: 14px; height: 14px;
+  background: var(--accent); border-radius: 50%; border: 2px solid white; animation: dot-blink 1.5s infinite;
+}
+@keyframes fab-pulse { 0%,100% { box-shadow: 0 6px 20px rgba(183,28,28,.4); } 50% { box-shadow: 0 6px 28px rgba(183,28,28,.7); } }
+@keyframes dot-blink { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+.tutor-panel {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; height: 100dvh;
+  background: var(--bot-bg); backdrop-filter: var(--bot-blur); -webkit-backdrop-filter: var(--bot-blur);
+  z-index: 600; display: none; flex-direction: column; transform: translateY(100%);
+  transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.tutor-panel.open { display: flex; transform: translateY(0); }
+
+.tutor-header {
+  padding: 12px 14px; padding-top: calc(12px + env(safe-area-inset-top));
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: white; display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15); flex-shrink: 0; min-height: 54px;
+}
+.tutor-header-brand { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: .95rem; }
+.tutor-header-brand .emoji { font-size: 1.2rem; }
+.tutor-header-actions { display: flex; gap: 4px; }
+
+.tutor-icon-btn {
+  width: 34px; height: 34px; border-radius: 50%; border: none;
+  background: rgba(255,255,255,.2); color: white; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: .85rem; transition: transform .15s;
+}
+.tutor-icon-btn:active { transform: scale(.9); }
+
+.tutor-subject-bar {
+  padding: 8px 12px; background: rgba(255,255,255,0.2); border-bottom: 1px solid var(--border);
+  display: flex; gap: 6px; align-items: center; flex-shrink: 0;
+}
+[data-theme="dark"] .tutor-subject-bar { background: rgba(0,0,0,0.2); }
+.tutor-subject-bar label { font-size: .75rem !important; white-space: nowrap; font-weight: 700; color: var(--primary); }
+.tutor-subject-bar select {
+  flex: 1; min-width: 0; padding: 6px 8px; border: 2px solid var(--border); border-radius: 8px;
+  font-family: inherit; font-size: .78rem; background: var(--card); color: var(--text);
+}
+
+.tutor-chat {
+  flex: 1; overflow-y: auto; overflow-x: hidden; padding: 12px 10px;
+  display: flex; flex-direction: column; gap: 10px;
+  -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  align-items: flex-start;
+}
+.tutor-chat::-webkit-scrollbar { width: 4px; }
+.tutor-chat::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 2px; }
+
+.tutor-welcome {
+  background: rgba(255,255,255,0.5); backdrop-filter: blur(8px);
+  border: 1px solid rgba(183,28,28,.2); border-radius: 12px; padding: 14px; font-size: .85rem;
+  width: 100%;
+}
+[data-theme="dark"] .tutor-welcome { background: rgba(0,0,0,0.3); }
+.tutor-welcome h3 { color: var(--primary); margin-bottom: 6px; font-size: .9rem; }
+.tutor-welcome ul { list-style: none; margin-top: 5px; font-size: .78rem; }
+.tutor-welcome li { padding: 2px 0; display: flex; gap: 6px; }
+
+/* ======== رسائل البوت والمستخدم (الحل النهائي) ======== */
+.tutor-msg { 
+  display: flex; 
+  gap: 6px; 
+  align-items: flex-end; 
+  animation: msg-in .3s ease-out; 
+  max-width: 100%; 
+  width: fit-content; /* الحاوية تأخذ عرض المحتوى فقط */
+}
+
+.tutor-msg.user { 
+  flex-direction: row-reverse; 
+  align-self: flex-end; /* محاذاة المستخدم لليمين */
+}
+
+.tutor-msg.bot { 
+  align-items: flex-start; 
+  align-self: flex-start; /* محاذاة البوت لليسار */
+}
+
+.tutor-avatar {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .72rem;
+}
+.tutor-msg.bot .tutor-avatar { background: rgba(183,28,28,.15); color: var(--primary); border: 1px solid rgba(183,28,28,.3); }
+.tutor-msg.user .tutor-avatar { background: var(--primary); color: white; }
+
+/* فقاعة الرسالة (الحل النهائي لمنع التمدد والكسر) */
+.tutor-bubble {
+  max-width: 85vw; /* منع التمدد الأفقي الزائد */
+  width: fit-content; /* الفقاعة تأخذ عرض النص فقط */
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: 16px;
+  font-size: .85rem;
+  direction: inherit; /* احترام اتجاه النص RTL/LTR */
+  text-align: start; /* محاذاة النص */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tutor-msg.bot .tutor-bubble {
+  background: var(--bot-bubble);
+  border: 1px solid var(--border);
+  border-bottom-right-radius: 4px;
+  color: var(--text);
+}
+
+.tutor-msg.user .tutor-bubble {
+  background: var(--user-bubble);
+  color: white;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 3px 8px rgba(183,28,28,0.2);
+}
+
+.tutor-time { 
+  font-size: .6rem; 
+  opacity: .6; 
+  margin-top: 4px; 
+  align-self: flex-end; /* وضع الوقت في الزاوية */
+}
+
+@keyframes msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.typing-dots { display: flex; gap: 4px; padding: 4px 0; direction: ltr; }
+.typing-dots span { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out; }
+.typing-dots span:nth-child(2) { animation-delay: .16s; }
+.typing-dots span:nth-child(3) { animation-delay: .32s; }
+@keyframes bounce { 0%,80%,100% { transform: scale(.8); opacity: .5; } 40% { transform: scale(1); opacity: 1; } }
+
+.quick-actions {
+  display: flex; flex-wrap: nowrap; gap: 6px; padding: 8px 10px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  background: rgba(255,255,255,0.2); border-top: 1px solid var(--border); flex-shrink: 0;
+}
+[data-theme="dark"] .quick-actions { background: rgba(0,0,0,0.2); }
+.quick-actions::-webkit-scrollbar { display: none; }
+
+.quick-btn {
+  padding: 6px 12px; background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; font-size: .72rem; color: var(--text);
+  cursor: pointer; font-family: inherit; font-weight: 600;
+  white-space: nowrap; flex-shrink: 0; transition: all .15s;
+}
+.quick-btn:active { background: var(--primary); color: white; transform: scale(.95); border-color: var(--primary); }
+
+.tutor-input-area {
+  padding: 10px 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255,255,255,0.3); border-top: 1px solid var(--border);
+  display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0;
+}
+[data-theme="dark"] .tutor-input-area { background: rgba(0,0,0,0.3); }
+
+.tutor-input-area textarea {
+  flex: 1; min-width: 0; padding: 10px 14px;
+  border: 2px solid var(--border); border-radius: 22px;
+  font-family: inherit; font-size: .85rem; resize: none;
+  max-height: 100px; min-height: 40px; background: var(--card); color: var(--text);
+  line-height: 1.4; outline: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+.tutor-input-area textarea:focus { border-color: var(--primary); }
+
+.tutor-send {
+  width: 40px; height: 40px; min-width: 40px; border-radius: 50%;
+  background: var(--primary); color: white; border: none; cursor: pointer;
+  font-size: .9rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  transition: transform .15s; box-shadow: 0 3px 8px rgba(183,28,28,0.3);
+}
+.tutor-send:active { transform: scale(.9); }
+.tutor-send:disabled { opacity: .5; }
+
+mark.ai-highlight {
+  background: linear-gradient(120deg, #fff59d 0%, #ffe082 100%);
+  color: #333; padding: 1px 3px; border-radius: 3px;
+  animation: highlight-pulse 2s ease-out; font-weight: 600;
+}
+@keyframes highlight-pulse { 0% { background-color: #ff7043; transform: scale(1.05); } 100% { transform: scale(1); } }
+
+.toast {
+  position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+  background: #333; color: white; padding: 8px 16px; border-radius: 20px;
+  font-size: .78rem; z-index: 1000; box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  animation: toast-in .3s ease-out; max-width: 90vw; text-align: center;
+}
+.toast.success { background: #2E7D32; }
+.toast.error { background: #c62828; }
+.toast.info { background: var(--primary); }
+@keyframes toast-in { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+@media (min-width: 600px) {
+  .tutor-panel.open {
+    top: 20px; bottom: 20px; left: auto; right: 20px; width: 400px; max-width: 90vw; height: auto;
+    max-height: calc(100dvh - 40px); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .tutor-panel.open .tutor-header { border-radius: 20px 20px 0 0; }
+  .tutor-bubble { font-size: .9rem; }
+  .tutor-chat { padding: 14px 12px; }
+}
+
+/* 10. MARKDOWN STYLING (CHATGPT STYLE) */
+.tutor-msg.bot .markdown-body { white-space: normal; text-align: start; }
+.tutor-msg.bot .markdown-body p { margin: 0 0 8px 0; }
+.tutor-msg.bot .markdown-body p:last-child { margin-bottom: 0; }
+
+.tutor-msg.bot .markdown-body ul,
+.tutor-msg.bot .markdown-body ol { margin: 6px 0 10px 20px; padding: 0; }
+.tutor-msg.bot .markdown-body li { margin-bottom: 4px; }
+
+.tutor-msg.bot .markdown-body h1,
+.tutor-msg.bot .markdown-body h2,
+.tutor-msg.bot .markdown-body h3 {
+  color: var(--primary); margin: 10px 0 6px 0; font-size: 1.05rem; font-weight: bold;
+}
+
+.tutor-msg.bot .markdown-body code {
+  background: rgba(183,28,28,0.08); padding: 2px 5px; border-radius: 4px;
+  font-family: var(--mono); font-size: 0.9em; color: var(--primary-dark);
+}
+.tutor-msg.bot .markdown-body pre {
+  background: #1e1e2e; color: #fff; padding: 10px 12px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; direction: ltr; text-align: left; font-size: .75rem;
+}
+.tutor-msg.bot .markdown-body pre code { background: transparent; color: #fff; padding: 0; }
+
+.tutor-msg.bot .markdown-body strong { color: var(--primary-dark); font-weight: 700; }
+.tutor-msg.bot .markdown-body hr { border: 0; border-top: 1px dashed var(--border); margin: 12px 0; }
+
+/* 11. QCM & EXERCICES */
+.activity { background: var(--card); border-radius: 12px; padding: 16px 12px; margin: 14px 0; box-shadow: var(--shadow); border-top: 4px solid var(--primary-light); width: 100%; }
+.activity .act-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px dashed var(--border); flex-wrap: wrap; }
+.activity .act-head .act-icon { font-size: 1.2rem; }
+.activity .act-head .act-title { font-weight: 700; color: var(--primary); font-size: .88rem; flex: 1; }
+.activity .act-head .act-type { background: var(--primary-light); color: white; padding: 3px 8px; border-radius: 12px; font-size: .65rem; font-weight: 700; }
+.act-type.qcm { background: #E65100; }
+
+.qcm-question { font-weight: 600; margin: 10px 0 6px; color: var(--primary); font-size: .82rem; }
+.qcm-options { display: flex; flex-direction: column; gap: 5px; }
+.qcm-options label { display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px; background: #fdf8f8; border-radius: 7px; cursor: pointer; border: 2px solid transparent; font-size: .8rem; line-height: 1.4; min-height: 40px; }
+[data-theme="dark"] .qcm-options label { background: #1a1a1a; }
+.qcm-options input[type="radio"] { accent-color: var(--primary-light); width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; }
+.qcm-options label.correct { background: #e8f5e9; border-color: #2E7D32; }
+.qcm-options label.wrong { background: #ffebee; border-color: #c62828; }
+
+.qcm-btn { margin-top: 8px; padding: 10px 16px; background: var(--primary-light); color: white; border: none; border-radius: 7px; font-weight: 700; cursor: pointer; font-size: .82rem; width: 100%; min-height: 40px; font-family: inherit; }
+.qcm-btn + .qcm-btn { margin-top: 5px; }
+.qcm-feedback { margin-top: 8px; font-weight: 600; font-size: .78rem; padding: 7px 10px; border-radius: 6px; }
+.qcm-feedback.ok { color: #2E7D32; background: #e8f5e9; }
+.qcm-feedback.ko { color: #c62828; background: #ffebee; }
+
+.exercice { background: var(--card); border-radius: 10px; padding: 14px 12px; margin: 12px 0; box-shadow: var(--shadow); border-left: 4px solid var(--primary-light); width: 100%; }
+.exercice[data-niveau="1"] { border-left-color: #4CAF50; }
+.exercice[data-niveau="2"] { border-left-color: #FF9800; }
+.exercice[data-niveau="3"] { border-left-color: #c62828; }
+.ex-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dashed var(--border); flex-wrap: wrap; gap: 5px; }
+.ex-num { font-weight: 700; color: var(--primary); font-size: .88rem; }
+.ex-niveau { font-size: .68rem; color: #666; padding: 2px 8px; background: #f0f4f8; border-radius: 10px; }
+.ex-enonce { margin-bottom: 8px; font-size: .85rem; }
+.reveal-btn { background: var(--accent); color: #333; border: none; padding: 9px 14px; border-radius: 7px; font-weight: 700; cursor: pointer; margin-top: 8px; font-size: .78rem; width: 100%; min-height: 40px; font-family: inherit; }
+.reveal-btn:active { background: #ffca28; transform: scale(.98); }
+.solution { display: none; margin-top: 10px; border-left: 3px solid #2E7D32; padding: 10px 12px; background: linear-gradient(135deg, #f1f8e9, #f7fbf4); border-radius: 7px; font-size: .82rem; overflow-x: auto; }
+.solution.visible { display: block; }
+
+/* 12. ESSENTIEL & PROJET & PY-RUNNER */
+.chap-essentiel { background: linear-gradient(135deg, #fff8e1, #fffde7); border: 2px solid var(--accent); border-radius: 12px; padding: 16px 12px; margin: 18px 0; width: 100%; }
+.chap-essentiel h2 { color: #8f6b00; font-size: 1.05rem; margin-bottom: 12px; }
+.essentiel-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.ess-card { background: var(--card); border-radius: 8px; padding: 12px; box-shadow: var(--shadow); }
+.ess-card h3 { color: #8f6b00; font-size: .85rem; margin-bottom: 7px; padding-bottom: 5px; border-bottom: 2px solid var(--accent); }
+.ess-card ul, .ess-card ol { margin-left: 16px; font-size: .78rem; }
+.ess-card li { margin: 3px 0; }
+.ess-card pre { margin: 0; padding: 8px; font-size: .68rem; }
+
+.chap-projet { background: linear-gradient(135deg, #fce4ec, #f8bbd0); border-left: 4px solid #AD1457; border-radius: 12px; padding: 16px 12px; margin: 18px 0; width: 100%; }
+.chap-projet h2 { color: #880E4F; font-size: 1.05rem; margin-bottom: 12px; }
+.projet-card { background: var(--card); border-radius: 10px; padding: 14px 12px; box-shadow: 0 2px 8px rgba(136,14,79,.12); }
+.projet-card h3 { color: #880E4F; margin-bottom: 8px; font-size: .9rem; }
+.projet-card details { margin-top: 10px; padding: 10px 12px; background: #fce4ec; border-radius: 7px; }
+.projet-card summary { cursor: pointer; font-weight: 700; color: #AD1457; font-size: .82rem; }
+
+@media (min-width: 600px) { .essentiel-grid { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 900px) { .essentiel-grid { grid-template-columns: repeat(3,1fr); } }
+
+.py-runner { background: #fafbfd; border: 2px solid var(--primary-light); border-radius: 10px; overflow: hidden; margin: 14px 0; box-shadow: 0 3px 12px rgba(183,28,28,.12); width: 100%; }
+.py-runner-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; flex-wrap: wrap; gap: 6px; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; }
+.py-runner-title { font-weight: 700; font-size: .82rem; }
+.py-runner-actions { display: flex; gap: 5px; flex-wrap: wrap; width: 100%; }
+.py-btn { padding: 7px 10px; border: none; border-radius: 6px; font-size: .72rem; font-weight: 700; cursor: pointer; font-family: inherit; flex: 1; min-width: 65px; min-height: 34px; }
+.py-run { background: #2E7D32; color: white; }
+.py-run:disabled { opacity: .6; cursor: wait; }
+.py-copy { background: rgba(255,255,255,.22); color: white; }
+.py-reset { background: rgba(255,255,255,.15); color: white; }
+.py-editor-wrap { background: #1e1e2e; }
+.py-editor { display: block; width: 100%; min-height: 100px; padding: 12px 10px; background: #1e1e2e; color: #e0e0e0; border: none; outline: none; resize: vertical; font-family: var(--mono); font-size: .78rem; line-height: 1.5; tab-size: 4; }
+.py-inputs-wrap { padding: 8px 10px; background: #fdf6f6; border-top: 1px solid #f0c8c8; }
+.py-inputs-label { display: block; font-size: .72rem; color: var(--primary); margin-bottom: 4px; font-weight: 600; }
+.py-inputs { display: block; width: 100%; padding: 8px 10px; border: 1px solid #e0b0b0; border-radius: 6px; font-family: var(--mono); font-size: .78rem; resize: vertical; min-height: 50px; background: white; }
+.py-output-wrap { border-top: 2px solid var(--primary-light); }
+.py-output-head { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #fce4ec; font-size: .72rem; font-weight: 600; color: var(--primary); }
+.py-status { font-weight: normal; font-size: .68rem; color: #666; }
+.py-status.py-ok { color: #2E7D32; }
+.py-status.py-ko { color: #c62828; }
+.py-output { margin: 0; padding: 10px 12px; background: #0d1117; color: #d0d0d0; font-family: var(--mono); font-size: .75rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word; min-height: 50px; max-height: 280px; overflow-y: auto; }
+.py-output.py-success { color: #a8e6a8; }
+.py-output.py-error { color: #ff8080; background: #2a0e0e; }
+
+@media (min-width: 600px) { .py-runner-actions { width: auto; } .py-btn { flex: none; padding: 7px 12px; } }
+
+.breadcrumb { background: linear-gradient(135deg, #fce4ec, #fff0f0); padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; font-size: .78rem; overflow-x: auto; white-space: nowrap; border-left: 3px solid var(--primary-light); }
+.breadcrumb a { color: var(--primary); font-weight: 600; }
+
+footer { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 18px 14px; font-size: .78rem; margin-top: 24px; width: 100%; }
+footer p:first-child { font-weight: 600; margin-bottom: 3px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>📕 Manuel d'Informatique — 2<sup>ème</sup> Sciences</h1>
+  <p>🇹🇳 TutorBot AI intégré · Sections Scientifiques</p>
+</header>
+
+<nav class="top-nav">
+  <ul>
+    <li><a href="#accueil" class="active">🏠 Accueil</a></li>
+    <li><a href="#partie1">1. Pensée</a></li>
+    <li><a href="#partie2">2. Démarche</a></li>
+    <li><a href="#partie3">3. Types</a></li>
+    <li><a href="#partie4">4. Structures</a></li>
+    <li><a href="#partie5">5. Conditionnelles</a></li>
+    <li><a href="#partie6">6. Boucle Pour</a></li>
+    <li><a href="#partie7">7. Projets</a></li>
+    <li><a href="#glossaire">📚 Glossaire</a></li>
+    <li><a href="#" class="ai-btn" onclick="openTutor();return false">🤖 TutorBot</a></li>
+  </ul>
+</nav>
+
+<button class="tutor-fab" onclick="openTutor()" aria-label="Ouvrir TutorBot" title="TutorBot">
+  <i class="fas fa-robot"></i>
+</button>
+
+<div id="tutorPanel" class="tutor-panel">
+  <div class="tutor-header">
+    <div class="tutor-header-brand"><span class="emoji">🇹🇳</span> TutorBot</div>
+    <div class="tutor-header-actions">
+      <button class="tutor-icon-btn" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="tutor-icon-btn" onclick="clearTutorChat()" title="Effacer"><i class="fas fa-trash"></i></button>
+      <button class="tutor-icon-btn" onclick="closeTutor()" title="Fermer"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+  <div class="tutor-subject-bar">
+    <label>📖 Matière:</label>
+    <select id="tutorSubject" onchange="onSubjectChange()">
+      <option value="Informatique">💻 Informatique (actuel)</option>
+      <option value="Mathématiques">📐 Mathématiques</option>
+      <option value="Sciences">🔬 Sciences</option>
+      <option value="Arabe">📖 Arabe</option>
+      <option value="Français">🌍 Français</option>
+      <option value="Anglais">🌍 Anglais</option>
+    </select>
+  </div>
+  <div id="tutorChat" class="tutor-chat">
+    <div class="tutor-welcome">
+      <h3>👋 مرحباً! أنا TutorBot</h3>
+      <p style="color:var(--text2);font-size:.8rem">مساعد ذكي مدعوم بالذكاء الاصطناعي. أستطيع:</p>
+      <ul>
+        <li>✅ شرح أي درس من الموقع</li>
+        <li>✅ الانتقال إلى قسم معين</li>
+        <li>✅ تمييز النصوص المهمة</li>
+        <li>✅ حل تمارين خطوة بخطوة</li>
+      </ul>
+      <p style="margin-top:8px;font-size:.7rem;color:var(--text2);">⚠️ أول استخدام: سجل دخول مجاني إلى Puter (Google).</p>
+    </div>
+  </div>
+  <div class="quick-actions">
+    <button class="quick-btn" onclick="quickAsk('اشرح لي هذا القسم باختصار')">📖 اشرح الحالي</button>
+    <button class="quick-btn" onclick="quickAsk('لخّص لي الدرس الحالي في 5 نقاط')">📝 لخّص</button>
+    <button class="quick-btn" onclick="quickAsk('خذني إلى قسم الحلقات (Boucle Pour)')">🔁 الحلقات</button>
+    <button class="quick-btn" onclick="quickAsk('ما هي البوليان Booléen؟')">🔍 Booléen</button>
+  </div>
+  <div class="tutor-input-area">
+    <textarea id="tutorInput" rows="1" placeholder="اكتب سؤالك..." maxlength="2000"></textarea>
+    <button class="tutor-send" id="tutorSend" onclick="sendTutorMessage()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<main>
+
+<!-- ACCUEIL -->
+<section id="accueil">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <h1>🏠 Bienvenue</h1>
+    <p class="sous-titre">Manuel d'Informatique — 2ème Sciences + TutorBot IA</p>
+  </div>
+  <div class="section" style="background:linear-gradient(135deg,#fce4ec,#fff0f0);">
+    <h2>Bienvenue dans votre manuel numérique</h2>
+    <p>Ce manuel couvre <strong>l'intégralité du programme officiel</strong> d'informatique pour la 2<sup>ème</sup> année, sections scientifiques.</p>
+    <ul style="margin-left:18px;font-size:.85rem;line-height:1.8;margin-top:8px;">
+      <li>💡 <strong>Cours structuré</strong></li>
+      <li>🤖 <strong>TutorBot IA</strong> — assistant intégré</li>
+      <li>✏️ <strong>Exercices gradués</strong></li>
+      <li>🚀 <strong>5 projets concrets</strong></li>
+    </ul>
+    <div class="encadre retenir" style="margin-top:12px;">
+      <h4>Nouveau : TutorBot</h4>
+      <p>Cliquez sur le bouton 🤖 (en bas à droite) pour poser vos questions. TutorBot peut vous expliquer un cours, naviguer, surligner du texte, et plus encore !</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>📚 Structure du manuel</h2>
+    <div style="display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px;">
+      <a href="#partie1" style="display:block;background:linear-gradient(135deg,#C62828,#E53935);color:white;padding:12px;border-radius:10px;text-decoration:none;">
+        <div style="font-size:.68rem;opacity:.9;">PARTIE 1</div>
+        <h3 style="color:white;margin:2px 0;font-size:.9rem;">🧠 Pensée computationnelle</h3>
+        <p style="color:rgba(255,255,255,.9);font-size:.72rem;">Décomposition · Reconnaissance · Abstraction · Algorithme</p>
+      </a>
+      <a href="#partie2" style="display:block;background:linear-gradient(135deg,#D32F2F,#EF5350);color:white;padding:12px;border-radius:10px;text-decoration:none;">
+        <div style="font-size:.68rem;opacity:.9;">PARTIE 2</div>
+        <h3 style="color:white;margin:2px 0;font-size:.9rem;">🎯 Démarche de résolution</h3>
+        <p style="color:rgba(255,255,255,.9);font-size:.72rem;">C-A-C-V</p>
+      </a>
+      <a href="#partie3" style="display:block;background:linear-gradient(135deg,#E53935,#EF5350);color:white;padding:12px;border-radius:10px;text-decoration:none;">
+        <div style="font-size:.68rem;opacity:.9;">PARTIE 3</div>
+        <h3 style="color:white;margin:2px 0;font-size:.9rem;">📦 Types de données</h3>
+        <p style="color:rgba(255,255,255,.9);font-size:.72rem;">E-R-B-C-C</p>
+      </a>
+      <a href="#partie4" style="display:block;background:linear-gradient(135deg,#B71C1C,#E53935);color:white;padding:12px;border-radius:10px;text-decoration:none;">
+        <div style="font-size:.68rem;opacity:.9;">PARTIE 4</div>
+        <h3 style="color:white;margin:2px 0;font-size:.9rem;">⌨️ Structures simples</h3>
+        <p style="color:rgba(255,255,255,.9);font-size:.72rem;">Lire · Écrire · Affectation</p>
+      </a>
+      <a href="#partie5" style="display:block;background:linear-gradient(135deg,#C62828,#E53935);color:white;padding:12px;border-radius:10px;text-decoration:none;">
+        <div style="font-size:.68rem;opacity:.9;">PARTIE 5</div>
+        <h3 style="color:white;margin:2px 0;font-size:.9rem;">🔀 Conditionnelles</h3>
+        <p style="color:rgba(255,255,255,.9);font-size:.72rem;">Si…Alors · Si…Sinon</p>
+      </a>
+      <a href="#partie6" style="display:block;background:linear-gradient(135deg,#D32F2F,#EF5350);color:white;padding:12px;border-radius:10px;text-decoration:none;">
+        <div style="font-size:.68rem;opacity:.9;">PARTIE 6</div>
+        <h3 style="color:white;margin:2px 0;font-size:.9rem;">🔁 Boucle Pour</h3>
+        <p style="color:rgba(255,255,255,.9);font-size:.72rem;">Répétition</p>
+      </a>
+      <a href="#partie7" style="display:block;background:linear-gradient(135deg,#E53935,#EF5350);color:white;padding:12px;border-radius:10px;text-decoration:none;">
+        <div style="font-size:.68rem;opacity:.9;">PARTIE 7</div>
+        <h3 style="color:white;margin:2px 0;font-size:.9rem;">🚀 Projets</h3>
+        <p style="color:rgba(255,255,255,.9);font-size:.72rem;">5 mini-projets</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PARTIE 1 -->
+<section id="partie1">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <div style="font-size:.72rem;opacity:.9;letter-spacing:2px;">PARTIE 1</div>
+    <h1>🧠 La pensée computationnelle</h1>
+    <p class="sous-titre">Ordinateur · D-R-A-A · Algorithmes</p>
+  </div>
+  <div class="section">
+    <h2>1. Qu'est-ce qu'un ordinateur ?</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Un <strong>ordinateur</strong> est une machine électronique <strong>programmable</strong> capable de :</p>
+      <ul>
+        <li><strong>Acquérir</strong> des données (entrées)</li>
+        <li><strong>Traiter</strong> ces données (calculs)</li>
+        <li><strong>Stocker</strong> des informations</li>
+        <li><strong>Restituer</strong> des résultats (sorties)</li>
+      </ul>
+    </div>
+    <h3>1.1 Schéma simplifié</h3>
+    <div class="schema-ordi">
+      <div class="ligne">
+        <div class="bloc"><strong>📥 Entrées</strong><small>Clavier…</small></div>
+        <div class="fleche">→</div>
+        <div class="bloc bloc-central"><strong>🧠 Traitement</strong><small>CPU</small></div>
+        <div class="fleche">→</div>
+        <div class="bloc"><strong>📤 Sorties</strong><small>Écran…</small></div>
+      </div>
+      <div class="ligne" style="margin-top:8px;">
+        <div class="bloc"><strong>💾 Mémoire</strong><small>RAM, disque</small></div>
+      </div>
+    </div>
+    <div class="encadre piege">
+      <h4>Un ordinateur ne pense pas !</h4>
+      <p>Il exécute les instructions qu'on lui donne. C'est <strong>le programmeur</strong> qui réfléchit.</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>2. La pensée computationnelle</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>La <strong>pensée computationnelle</strong> est une façon de <strong>résoudre des problèmes</strong> en les décomposant en étapes simples.</p>
+    </div>
+    <h3>2.1 Les 4 composantes — D-R-A-A</h3>
+    <div class="schema-4">
+      <div class="comp"><span class="icon">🧩</span><h4>Décomposition</h4><p>Diviser en sous-problèmes</p></div>
+      <div class="comp"><span class="icon">🔍</span><h4>Reconnaissance</h4><p>Repérer des modèles</p></div>
+      <div class="comp"><span class="icon">🎯</span><h4>Abstraction</h4><p>Garder l'essentiel</p></div>
+      <div class="comp"><span class="icon">📋</span><h4>Algorithme</h4><p>Écrire les étapes</p></div>
+    </div>
+    <div class="encadre retenir">
+      <h4>Astuce</h4>
+      <p style="text-align:center;font-weight:bold;color:#8f6b00;"><strong>D</strong>écomposition · <strong>R</strong>econnaissance · <strong>A</strong>bstraction · <strong>A</strong>lgorithme</p>
+    </div>
+    <div class="encadre exemple">
+      <h4>Exemple — Gâteau</h4>
+      <p><strong>Sous-problèmes :</strong> Choisir recette, acheter ingrédients, préparer pâte, cuire, décorer.</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>3. Algorithmes et programmes</h2>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Algorithme</th><th>Programme</th></tr></thead>
+        <tbody>
+          <tr><td>Description de la solution</td><td>Traduction en langage</td></tr>
+          <tr><td>En français / pseudo-code</td><td>En Python, C…</td></tr>
+          <tr><td>Indépendant de la machine</td><td>Dépend du langage</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="encadre exemple">
+      <h4>Exemple comparatif</h4>
+      <table class="duo-table">
+        <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+        <tr>
+          <td class="algo"><pre>ALGORITHME Somme
+DEBUT
+    Lire (a)
+    Lire (b)
+    s ← a + b
+    Écrire ("Somme = ", s)
+FIN</pre></td>
+          <td class="python"><pre>a = int(input("a = "))
+b = int(input("b = "))
+s = a + b
+print("Somme =", s)</pre></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="section">
+    <h2>4. Vocabulaire de base</h2>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Terme</th><th>Définition</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Algorithme</strong></td><td>Suite d'instructions ordonnées</td></tr>
+          <tr><td><strong>Programme</strong></td><td>Traduction d'un algorithme</td></tr>
+          <tr><td><strong>Instruction</strong></td><td>Opération élémentaire</td></tr>
+          <tr><td><strong>Variable</strong></td><td>Contenu qui peut changer</td></tr>
+          <tr><td><strong>Constante</strong></td><td>Contenu qui ne change pas</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <nav class="chap-nav">
+    <a class="prev" href="#accueil">← Accueil</a>
+    <a class="sommaire" href="#accueil">☰ Sommaire</a>
+    <a class="next" href="#partie2">Partie 2 →</a>
+  </nav>
+</section>
+
+<!-- PARTIE 2 -->
+<section id="partie2">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <div style="font-size:.72rem;opacity:.9;letter-spacing:2px;">PARTIE 2</div>
+    <h1>🎯 La démarche de résolution</h1>
+    <p class="sous-titre">C-A-C-V</p>
+  </div>
+  <div class="section">
+    <h2>Introduction — C-A-C-V</h2>
+    <div class="schema-cacv">
+      <div class="etape"><span class="num">1</span><span class="icon">🧠</span><h4>Comprendre</h4><p>Lire l'énoncé</p></div>
+      <div class="etape"><span class="num">2</span><span class="icon">🔍</span><h4>Analyser</h4><p>E / T / S</p></div>
+      <div class="etape"><span class="num">3</span><span class="icon">✏️</span><h4>Concevoir</h4><p>Algorithme</p></div>
+      <div class="etape"><span class="num">4</span><span class="icon">✅</span><h4>Vérifier</h4><p>Tester</p></div>
+    </div>
+    <div class="encadre retenir">
+      <h4>Astuce</h4>
+      <p style="text-align:center;font-weight:bold;color:#8f6b00;"><strong>C</strong>omprendre → <strong>A</strong>nalyser → <strong>C</strong>oncevoir → <strong>V</strong>érifier</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>1. Analyser (E / T / S)</h2>
+    <div class="encadre definition">
+      <h4>Principe</h4>
+      <ul>
+        <li><strong>Entrées</strong> : données fournies</li>
+        <li><strong>Traitements</strong> : opérations</li>
+        <li><strong>Sorties</strong> : résultats</li>
+      </ul>
+    </div>
+    <div class="encadre exemple">
+      <h4>Exemple — Moyenne de 3 notes</h4>
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entrées</th><th>Traitements</th><th>Sorties</th></tr></thead>
+          <tbody><tr><td>note1, note2, note3</td><td>m ← (n1+n2+n3)/3</td><td>m</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>2. Concevoir l'algorithme</h2>
+    <div class="encadre definition">
+      <h4>Forme officielle</h4>
+      <pre>ALGORITHME Nom
+DEBUT
+    Instructions
+FIN
+
+Déclaration des objets</pre>
+    </div>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Opération</th><th>Syntaxe</th><th>Exemple</th></tr></thead>
+        <tbody>
+          <tr><td>Entrée</td><td><code>Lire (Objet)</code></td><td><code>Lire (n)</code></td></tr>
+          <tr><td>Sortie</td><td><code>Écrire ("Msg", Objet)</code></td><td><code>Écrire ("n = ", n)</code></td></tr>
+          <tr><td>Affectation</td><td><code>Objet ← Expression</code></td><td><code>s ← a + b</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="encadre exemple">
+      <h4>Exemple complet — Moyenne</h4>
+      <table class="duo-table">
+        <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+        <tr>
+          <td class="algo"><pre>ALGORITHME Moyenne
+DEBUT
+    Lire (note1)
+    Lire (note2)
+    Lire (note3)
+    moyenne ← (note1+note2+note3)/3
+    Écrire ("Moyenne = ", moyenne)
+FIN</pre></td>
+          <td class="python"><pre>note1 = float(input("note1 = "))
+note2 = float(input("note2 = "))
+note3 = float(input("note3 = "))
+moyenne = (note1+note2+note3)/3
+print("Moyenne =", moyenne)</pre></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="section">
+    <h2>3. Vérifier</h2>
+    <div class="encadre astuce">
+      <h4>Tester 3 cas</h4>
+      <ul>
+        <li>Cas <strong>normal</strong></li>
+        <li>Cas <strong>limite</strong></li>
+        <li>Cas <strong>particulier</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <h2>4. Application — Rectangle</h2>
+    <div class="encadre exemple">
+      <h4>Énoncé</h4>
+      <p>Calculer surface S et périmètre P d'un rectangle Lo × La.</p>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Rectangle
+DEBUT
+    Lire (Lo)
+    Lire (La)
+    S ← Lo * La
+    P ← 2 * (Lo + La)
+    Écrire ("Surface = ", S)
+    Écrire ("Périmètre = ", P)
+FIN</pre></td>
+        <td class="python"><pre>Lo = float(input("Lo = "))
+La = float(input("La = "))
+S = Lo * La
+P = 2 * (Lo + La)
+print("Surface =", S)
+print("Périmètre =", P)</pre></td>
+      </tr>
+    </table>
+    <div class="py-runner" data-title="Surface et périmètre">
+      <script type="text/x-python">
+Lo = float(input("Lo = "))
+La = float(input("La = "))
+S = Lo * La
+P = 2 * (Lo + La)
+print("Surface =", S)
+print("Périmètre =", P)
+      </script>
+    </div>
+  </div>
+  <nav class="chap-nav">
+    <a class="prev" href="#partie1">← Partie 1</a>
+    <a class="sommaire" href="#accueil">☰ Sommaire</a>
+    <a class="next" href="#partie3">Partie 3 →</a>
+  </nav>
+</section>
+
+<!-- PARTIE 3 -->
+<section id="partie3">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <div style="font-size:.72rem;opacity:.9;letter-spacing:2px;">PARTIE 3</div>
+    <h1>📦 Les types de données</h1>
+    <p class="sous-titre">E-R-B-C-C</p>
+  </div>
+  <div class="section">
+    <h2>1. Vue d'ensemble</h2>
+    <div class="types-grid">
+      <div class="type-card"><span class="icon">🔢</span><h4>Entier</h4><div class="algo-name">Algo: Entier</div><span class="py-name">int</span><div class="examples">5, -12, 0</div></div>
+      <div class="type-card"><span class="icon">📐</span><h4>Réel</h4><div class="algo-name">Algo: Réel</div><span class="py-name">float</span><div class="examples">3.14, -0.5</div></div>
+      <div class="type-card"><span class="icon">✔️</span><h4>Booléen</h4><div class="algo-name">Algo: Booléen</div><span class="py-name">bool</span><div class="examples">Vrai / Faux</div></div>
+      <div class="type-card"><span class="icon">🔤</span><h4>Caractère</h4><div class="algo-name">Algo: Caractère</div><span class="py-name">str</span><div class="examples">'A', '5'</div></div>
+      <div class="type-card"><span class="icon">📝</span><h4>Chaîne</h4><div class="algo-name">Algo: Chaîne</div><span class="py-name">str</span><div class="examples">"Tunis"</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>2. Le type Entier</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Un <strong>entier</strong> n'a pas de partie décimale : …, -2, -1, 0, 1, 2, …</p>
+    </div>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Opération</th><th>Algo</th><th>Python</th><th>Exemple</th></tr></thead>
+        <tbody>
+          <tr><td>Addition</td><td><code>+</code></td><td><code>+</code></td><td>5+2=7</td></tr>
+          <tr><td>Division entière</td><td><code>Div</code></td><td><code>//</code></td><td>5//2=2</td></tr>
+          <tr><td>Modulo</td><td><code>Mod</code></td><td><code>%</code></td><td>5%2=1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section">
+    <h2>3. Le type Réel</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Un <strong>réel</strong> peut avoir une partie décimale : 3.14, -0.5.</p>
+    </div>
+    <div class="encadre piege">
+      <h4>Attention aux arrondis</h4>
+      <pre>0.1 + 0.2 = 0.30000000000000004</pre>
+    </div>
+  </div>
+  <div class="section">
+    <h2>4. Le type Booléen</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Un <strong>booléen</strong> prend 2 valeurs : <code>Vrai</code> (True) ou <code>Faux</code> (False).</p>
+    </div>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Opération</th><th>Algo</th><th>Python</th><th>Signification</th></tr></thead>
+        <tbody>
+          <tr><td>Négation</td><td><code>Non</code></td><td><code>not</code></td><td>Contraire</td></tr>
+          <tr><td>ET</td><td><code>Et</code></td><td><code>and</code></td><td>Les deux vrais</td></tr>
+          <tr><td>OU</td><td><code>Ou</code></td><td><code>or</code></td><td>Au moins un vrai</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section">
+    <h2>5. Caractère et Chaîne</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p><strong>Caractère</strong> : symbole unique. <strong>Chaîne</strong> : succession de caractères.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Opération</th><th>Python</th><th>Exemple</th></tr></thead>
+        <tbody>
+          <tr><td>Concaténation</td><td><code>+</code></td><td>'bon'+'jour'='bonjour'</td></tr>
+          <tr><td>Longueur</td><td><code>len(ch)</code></td><td>len('Tunis')=5</td></tr>
+          <tr><td>Conversion</td><td><code>int(ch)</code></td><td>int('25')=25</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section">
+    <h2>6. Fonctions prédéfinies</h2>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Algo</th><th>Python</th><th>Rôle</th><th>Import</th></tr></thead>
+        <tbody>
+          <tr><td>Arrondi(x)</td><td><code>round(x)</code></td><td>Entier proche</td><td>—</td></tr>
+          <tr><td>RacineCarré(x)</td><td><code>sqrt(x)</code></td><td>Racine</td><td><code>math</code></td></tr>
+          <tr><td>Aléa(a,b)</td><td><code>randint(a,b)</code></td><td>Aléatoire</td><td><code>random</code></td></tr>
+          <tr><td>Ent(x)</td><td><code>int(x)</code></td><td>Partie entière</td><td>—</td></tr>
+          <tr><td>Abs(x)</td><td><code>abs(x)</code></td><td>Valeur absolue</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <nav class="chap-nav">
+    <a class="prev" href="#partie2">← Partie 2</a>
+    <a class="sommaire" href="#accueil">☰ Sommaire</a>
+    <a class="next" href="#partie4">Partie 4 →</a>
+  </nav>
+</section>
+
+<!-- ⬇⬇⬇ الجزء الثاني سيُلصق هنا ⬇⬇⬇ -->
+  <!-- PARTIE 4 -->
+<section id="partie4">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <div style="font-size:.72rem;opacity:.9;letter-spacing:2px;">PARTIE 4</div>
+    <h1>⌨️ Les structures simples</h1>
+    <p class="sous-titre">Lire · Écrire · Affectation</p>
+  </div>
+
+  <div class="section">
+    <h2>1. Lire</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Instruction qui permet à l'utilisateur de <strong>saisir une valeur au clavier</strong>.</p>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>Lire (nom_variable)</pre></td>
+        <td class="python"><pre>nom_variable = input('...')</pre></td>
+      </tr>
+    </table>
+    <h3>Exemples progressifs</h3>
+    <h4>Lire une chaîne</h4>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr><td class="algo"><pre>Lire (nom)</pre></td><td class="python"><pre>nom = input()</pre></td></tr>
+    </table>
+    <h4>Lire un entier</h4>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr><td class="algo"><pre>Lire (n)  # Entier</pre></td><td class="python"><pre>n = int(input())</pre></td></tr>
+    </table>
+    <h4>Lire un réel</h4>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr><td class="algo"><pre>Lire (x)  # Réel</pre></td><td class="python"><pre>x = float(input())</pre></td></tr>
+    </table>
+    <div class="encadre piege">
+      <h4>Erreurs fréquentes</h4>
+      <ul>
+        <li><code>Lire a</code> sans parenthèses ❌ → <code>Lire (a)</code> ✅</li>
+        <li>Oublier la conversion après <code>input()</code> ❌</li>
+        <li><code>int("abc")</code> provoque une erreur ❌</li>
+      </ul>
+    </div>
+    <h3>TP — Testez</h3>
+    <div class="py-runner" data-title="Saisie d'un entier">
+      <script type="text/x-python">
+a = int(input("a = "))
+b = int(input("b = "))
+s = a + b
+print("Somme =", s)
+      </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Écrire</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Instruction qui <strong>affiche des valeurs à l'écran</strong>.</p>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr><td class="algo"><pre>Écrire ("Message", Objet)</pre></td><td class="python"><pre>print("Message", Objet)</pre></td></tr>
+    </table>
+    <h3>Types d'affichage</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr><td class="algo"><pre>Écrire ("Texte seul")</pre></td><td class="python"><pre>print("Texte seul")</pre></td></tr>
+      <tr><td class="algo"><pre>Écrire (n)</pre></td><td class="python"><pre>print(n)</pre></td></tr>
+      <tr><td class="algo"><pre>Écrire ("n = ", n)</pre></td><td class="python"><pre>print("n =", n)</pre></td></tr>
+    </table>
+    <div class="encadre piege">
+      <h4>Concaténation chaîne + entier</h4>
+      <pre>print("Âge : " + 16)      # ❌ ERREUR
+print("Âge :", 16)          # ✅ OK
+print("Âge : " + str(16))    # ✅ OK</pre>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Affectation</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Attribuer une valeur à une variable : <code>←</code> en algo, <code>=</code> en Python.</p>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr><td class="algo"><pre>Variable ← valeur</pre></td><td class="python"><pre>Variable = valeur</pre></td></tr>
+    </table>
+    <h3>Exemples</h3>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Algo</th><th>Python</th><th>Résultat</th></tr></thead>
+        <tbody>
+          <tr><td><code>x ← 5</code></td><td><code>x = 5</code></td><td>x=5</td></tr>
+          <tr><td><code>a ← x + 3</code></td><td><code>a = x + 3</code></td><td>a=8</td></tr>
+          <tr><td><code>x ← x - 2</code></td><td><code>x = x - 2</code></td><td>x=3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Trace d'exécution</h3>
+    <pre>x ← 5
+x ← x + 3
+x ← x * 2</pre>
+    <div class="table-wrap">
+      <table class="trace-table">
+        <thead><tr><th>Instruction</th><th>Valeur de x</th></tr></thead>
+        <tbody>
+          <tr><td>x ← 5</td><td>5</td></tr>
+          <tr><td>x ← x + 3</td><td>8</td></tr>
+          <tr><td>x ← x * 2</td><td>16</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="encadre piege">
+      <h4>= vs ==</h4>
+      <ul>
+        <li><strong>Algo</strong> : <code>=</code> égalité, <code>←</code> affectation</li>
+        <li><strong>Python</strong> : <code>=</code> affectation, <code>==</code> comparaison</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Application — Montant à payer</h2>
+    <div class="encadre exemple">
+      <h4>Énoncé</h4>
+      <p>n cahiers à 2500 millimes, remise 10 %. Calculer le montant m.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>E</th><th>T</th><th>S</th></tr></thead>
+        <tbody><tr><td>n</td><td>m ← 2500×n ; r ← 10%×m ; m ← m-r</td><td>m</td></tr></tbody>
+      </table>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Montant
+DEBUT
+    Écrire ("Donner la quantité : ")
+    Lire (n)
+    m ← 2500 * n
+    r ← (10 * m) / 100
+    m ← m - r
+    Écrire ("Montant = ", m)
+FIN</pre></td>
+        <td class="python"><pre>print("Donner la quantité : ")
+n = int(input())
+m = 2500 * n
+r = (10 * m) / 100
+m = m - r
+print("Montant =", m)</pre></td>
+      </tr>
+    </table>
+    <div class="py-runner" data-title="Calcul du montant">
+      <script type="text/x-python">
+n = int(input("Quantité : "))
+m = 2500 * n
+r = (10 * m) / 100
+m = m - r
+print("Montant payé :", m, "millimes =", m / 1000, "DT")
+      </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. Application — Permutation</h2>
+    <div class="encadre exemple">
+      <h4>Énoncé</h4>
+      <p>Permuter les contenus de deux réels a et b.</p>
+    </div>
+    <h3>Principe</h3>
+    <pre>aux ← a
+a ← b
+b ← aux</pre>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Permutation
+DEBUT
+    Lire (a)
+    Lire (b)
+    aux ← a
+    a ← b
+    b ← aux
+    Écrire ("a = ", a)
+    Écrire ("b = ", b)
+FIN</pre></td>
+        <td class="python"><pre>a = float(input("a = "))
+b = float(input("b = "))
+aux = a
+a = b
+b = aux
+print("a =", a)
+print("b =", b)</pre></td>
+      </tr>
+    </table>
+    <div class="py-runner" data-title="Permutation">
+      <script type="text/x-python">
+a = float(input("a = "))
+b = float(input("b = "))
+print("Avant : a =", a, "| b =", b)
+aux = a
+a = b
+b = aux
+print("Après : a =", a, "| b =", b)
+      </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 🧠 Auto-évaluation</h2>
+    <div class="activity">
+      <div class="act-head"><span class="act-icon">🧠</span><span class="act-title">QCM</span><span class="act-type qcm">Auto-éval</span></div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">1. Syntaxe Python pour lire un entier ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p4_q0" data-correct="false" data-explain="input() renvoie une chaîne."> n = input()</label>
+          <label><input type="radio" name="p4_q0" data-correct="true" data-explain="Conversion nécessaire."> n = int(input())</label>
+          <label><input type="radio" name="p4_q0" data-correct="false" data-explain="Pas en Python."> lire(n)</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">2. Affectation en algo ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p4_q1" data-correct="false" data-explain="= signifie égalité en algo."> a = 5</label>
+          <label><input type="radio" name="p4_q1" data-correct="true" data-explain="Flèche vers la gauche."> a ← 5</label>
+          <label><input type="radio" name="p4_q1" data-correct="false" data-explain="Pas la convention officielle."> a := 5</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">3. Différence = et == en Python ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p4_q2" data-correct="false" data-explain="Ce sont deux opérateurs distincts."> Aucune</label>
+          <label><input type="radio" name="p4_q2" data-correct="true" data-explain="= affecte, == teste l'égalité."> = affecte, == compare</label>
+          <label><input type="radio" name="p4_q2" data-correct="false" data-explain="Inversé."> = compare, == affecte</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">4. Variable indispensable pour permuter ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p4_q3" data-correct="false" data-explain="Sans temporaire, on perd une valeur."> Aucune</label>
+          <label><input type="radio" name="p4_q3" data-correct="true" data-explain="Appelée souvent aux ou temp."> Une variable temporaire</label>
+          <label><input type="radio" name="p4_q3" data-correct="false" data-explain="Une suffit."> Deux variables temporaires</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <button class="qcm-btn" onclick="checkQCM(this)">✓ Vérifier</button>
+      <button class="qcm-btn" style="background:linear-gradient(135deg,#607D8B,#78909C);" onclick="resetQCM(this)">↺ Réinitialiser</button>
+      <p class="qcm-summary" style="margin-top:10px;font-weight:bold;"></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. ✏️ Exercices</h2>
+    <div class="exercice" data-niveau="1">
+      <div class="ex-head"><span class="ex-num">Ex 1</span><span class="ex-niveau">⭐ Facile</span></div>
+      <div class="ex-enonce">Lire deux nombres et afficher leur produit.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME Produit
+DEBUT
+    Lire (a)
+    Lire (b)
+    p ← a * b
+    Écrire ("Produit = ", p)
+FIN</pre></td>
+            <td class="python"><pre>a = float(input("a = "))
+b = float(input("b = "))
+p = a * b
+print("Produit =", p)</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="exercice" data-niveau="2">
+      <div class="ex-head"><span class="ex-num">Ex 2</span><span class="ex-niveau">⭐⭐ Moyen</span></div>
+      <div class="ex-enonce">Lire un prix HT, appliquer TVA 19 %, afficher prix TTC.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME PrixTTC
+DEBUT
+    Lire (prix_ht)
+    prix_ttc ← prix_ht * 1.19
+    Écrire ("Prix TTC = ", prix_ttc)
+FIN</pre></td>
+            <td class="python"><pre>prix_ht = float(input("Prix HT = "))
+prix_ttc = prix_ht * 1.19
+print("Prix TTC =", prix_ttc)</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="exercice" data-niveau="3">
+      <div class="ex-head"><span class="ex-num">Ex 3</span><span class="ex-niveau">⭐⭐⭐ Difficile</span></div>
+      <div class="ex-enonce">Séquence :<br>x ← 10 / y ← 8 / z ← x / x ← y / y ← z<br>a) Compléter le tableau.<br>b) Rôle ?</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <p><strong>a)</strong></p>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead><tr><th>Instruction</th><th>x</th><th>y</th><th>z</th></tr></thead>
+            <tbody>
+              <tr><td>x ← 10</td><td>10</td><td>—</td><td>—</td></tr>
+              <tr><td>y ← 8</td><td>10</td><td>8</td><td>—</td></tr>
+              <tr><td>z ← x</td><td>10</td><td>8</td><td>10</td></tr>
+              <tr><td>x ← y</td><td>8</td><td>8</td><td>10</td></tr>
+              <tr><td>y ← z</td><td>8</td><td>10</td><td>10</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>b)</strong> Cette séquence <strong>permute</strong> x et y. z est la variable temporaire.</p>
+      </div>
+    </div>
+  </div>
+
+  <nav class="chap-nav">
+    <a class="prev" href="#partie3">← Partie 3</a>
+    <a class="sommaire" href="#accueil">☰ Sommaire</a>
+    <a class="next" href="#partie5">Partie 5 →</a>
+  </nav>
+</section>
+
+<!-- PARTIE 5 -->
+<section id="partie5">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <div style="font-size:.72rem;opacity:.9;letter-spacing:2px;">PARTIE 5</div>
+    <h1>🔀 Les structures conditionnelles</h1>
+    <p class="sous-titre">Si…Alors · Si…Sinon</p>
+  </div>
+
+  <div class="section">
+    <h2>Introduction</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Une <strong>structure conditionnelle</strong> permet de <strong>choisir</strong> un traitement selon une condition.</p>
+    </div>
+    <h3>Les 2 formes au programme</h3>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Forme</th><th>Traitements</th><th>Structure</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Simple</strong></td><td>1 (ou 0)</td><td><code>Si…Alors…FinSi</code></td></tr>
+          <tr><td><strong>Complète</strong></td><td>2</td><td><code>Si…Alors…Sinon…FinSi</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="encadre remarque">
+      <h4>Réservé à la 3ème</h4>
+      <p><code>Sinon Si</code> / <code>elif</code> et <code>Selon</code> / <code>match</code> sont vus en 3<sup>ème</sup>.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>1. Conditionnelle simple — Si…Alors</h2>
+    <h3>Syntaxe</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>Si condition Alors
+    <traitement>
+FinSi</pre></td>
+        <td class="python"><pre>if condition :
+    <traitement></pre></td>
+      </tr>
+    </table>
+    <h3>Exemple — Nombre positif</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Positif
+DEBUT
+    Lire (n)
+    Si n > 0 Alors
+        Écrire ("Positif")
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>n = int(input("n = "))
+if n > 0:
+    print("Positif")</pre></td>
+      </tr>
+    </table>
+    <div class="py-runner" data-title="Nombre positif">
+      <script type="text/x-python">
+n = int(input("n = "))
+if n > 0:
+    print(n, "est positif")
+print("Fin du programme")
+      </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Conditionnelle complète — Si…Sinon</h2>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>Si condition Alors
+    <traitement1>
+Sinon
+    <traitement2>
+FinSi</pre></td>
+        <td class="python"><pre>if condition :
+    <traitement1>
+else :
+    <traitement2></pre></td>
+      </tr>
+    </table>
+    <h3>Exemple — Pair ou impair</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME PairImpair
+DEBUT
+    Lire (n)
+    Si n Mod 2 = 0 Alors
+        Écrire ("Pair")
+    Sinon
+        Écrire ("Impair")
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>n = int(input("n = "))
+if n % 2 == 0:
+    print("Pair")
+else:
+    print("Impair")</pre></td>
+      </tr>
+    </table>
+    <h3>Exemple — Plus grand de deux</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME PlusGrand
+DEBUT
+    Lire (a)
+    Lire (b)
+    Si a > b Alors
+        Écrire ("Plus grand : ", a)
+    Sinon
+        Écrire ("Plus grand : ", b)
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>a = float(input("a = "))
+b = float(input("b = "))
+if a > b:
+    print("Plus grand :", a)
+else:
+    print("Plus grand :", b)</pre></td>
+      </tr>
+    </table>
+    <div class="py-runner" data-title="Pair ou impair">
+      <script type="text/x-python">
+n = int(input("n = "))
+if n % 2 == 0:
+    print(n, "est pair")
+else:
+    print(n, "est impair")
+      </script>
+    </div>
+    <div class="encadre piege">
+      <h4>Erreurs fréquentes</h4>
+      <ul>
+        <li><code>Fin Si</code> ❌ → <code>FinSi</code> ✅</li>
+        <li>Oublier <code>:</code> en Python ❌</li>
+        <li>Oublier l'indentation (4 espaces) ❌</li>
+        <li><code>=</code> au lieu de <code>==</code> ❌</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Opérateurs de comparaison</h2>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Opération</th><th>Algo</th><th>Python</th><th>Exemple</th><th>Résultat</th></tr></thead>
+        <tbody>
+          <tr><td>Égal</td><td><code>=</code></td><td><code>==</code></td><td>5==5</td><td>Vrai</td></tr>
+          <tr><td>Différent</td><td><code>≠</code></td><td><code>!=</code></td><td>5!=3</td><td>Vrai</td></tr>
+          <tr><td>Supérieur</td><td><code>&gt;</code></td><td><code>&gt;</code></td><td>5&gt;3</td><td>Vrai</td></tr>
+          <tr><td>Inférieur</td><td><code>&lt;</code></td><td><code>&lt;</code></td><td>5&lt;3</td><td>Faux</td></tr>
+          <tr><td>≥</td><td><code>≥</code></td><td><code>&gt;=</code></td><td>5&gt;=5</td><td>Vrai</td></tr>
+          <tr><td>≤</td><td><code>≤</code></td><td><code>&lt;=</code></td><td>5&lt;=3</td><td>Faux</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Conditions composées</h2>
+    <h3>Opérateurs logiques</h3>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Opération</th><th>Algo</th><th>Python</th><th>Signification</th></tr></thead>
+        <tbody>
+          <tr><td>Négation</td><td><code>Non</code></td><td><code>not</code></td><td>Contraire</td></tr>
+          <tr><td>ET</td><td><code>Et</code></td><td><code>and</code></td><td>Les deux vrais</td></tr>
+          <tr><td>OU</td><td><code>Ou</code></td><td><code>or</code></td><td>Au moins un vrai</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Table de vérité</h3>
+    <div class="table-wrap">
+      <table class="verite-table">
+        <tr><th>P</th><th>Q</th><th>Non P</th><th>P Et Q</th><th>P Ou Q</th></tr>
+        <tr><td>Faux</td><td>Faux</td><td class="vrai">Vrai</td><td class="faux">Faux</td><td class="faux">Faux</td></tr>
+        <tr><td>Faux</td><td>Vrai</td><td class="vrai">Vrai</td><td class="faux">Faux</td><td class="vrai">Vrai</td></tr>
+        <tr><td>Vrai</td><td>Faux</td><td class="faux">Faux</td><td class="faux">Faux</td><td class="vrai">Vrai</td></tr>
+        <tr><td>Vrai</td><td>Vrai</td><td class="faux">Faux</td><td class="vrai">Vrai</td><td class="vrai">Vrai</td></tr>
+      </table>
+    </div>
+    <h3>Exemple — Intervalle</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Intervalle
+DEBUT
+    Lire (n)
+    Si (n ≥ 1) Et (n ≤ 10) Alors
+        Écrire ("Dans l'intervalle")
+    Sinon
+        Écrire ("Hors intervalle")
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>n = int(input("n = "))
+if (n >= 1) and (n <= 10):
+    print("Dans l'intervalle")
+else:
+    print("Hors intervalle")</pre></td>
+      </tr>
+    </table>
+    <h3>Exemple — Année bissextile</h3>
+    <div class="encadre definition">
+      <h4>Rappel</h4>
+      <p>Bissextile si divisible par 4 ET non par 100, OU divisible par 400.</p>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Bissextile
+DEBUT
+    Lire (annee)
+    Si ((annee Mod 4 = 0) Et (annee Mod 100 ≠ 0))
+       Ou (annee Mod 400 = 0) Alors
+        Écrire ("Bissextile")
+    Sinon
+        Écrire ("Non bissextile")
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>annee = int(input("Année = "))
+if ((annee % 4 == 0) and (annee % 100 != 0)) or (annee % 400 == 0):
+    print("Bissextile")
+else:
+    print("Non bissextile")</pre></td>
+      </tr>
+    </table>
+    <div class="py-runner" data-title="Année bissextile">
+      <script type="text/x-python">
+annee = int(input("Année = "))
+if ((annee % 4 == 0) and (annee % 100 != 0)) or (annee % 400 == 0):
+    print("Année bissextile")
+else:
+    print("Année non bissextile")
+      </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. Applications</h2>
+    <h3>5.1 Signe d'un nombre</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Signe
+DEBUT
+    Lire (n)
+    Si n > 0 Alors
+        Écrire ("Positif")
+    Sinon
+        Si n < 0 Alors
+            Écrire ("Négatif")
+        Sinon
+            Écrire ("Nul")
+        FinSi
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>n = int(input("n = "))
+if n > 0:
+    print("Positif")
+else:
+    if n < 0:
+        print("Négatif")
+    else:
+        print("Nul")</pre></td>
+      </tr>
+    </table>
+    <h3>5.2 Mention</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Mention
+DEBUT
+    Lire (moyenne)
+    Si moyenne ≥ 10 Alors
+        Écrire ("Admis")
+    Sinon
+        Écrire ("Redouble")
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>moyenne = float(input("Moyenne = "))
+if moyenne >= 10:
+    print("Admis")
+else:
+    print("Redouble")</pre></td>
+      </tr>
+    </table>
+    <h3>5.3 Maximum de trois</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Max3
+DEBUT
+    Lire (a)
+    Lire (b)
+    Lire (c)
+    maxi ← a
+    Si b > maxi Alors
+        maxi ← b
+    FinSi
+    Si c > maxi Alors
+        maxi ← c
+    FinSi
+    Écrire ("Plus grand : ", maxi)
+FIN</pre></td>
+        <td class="python"><pre>a = int(input("a = "))
+b = int(input("b = "))
+c = int(input("c = "))
+maxi = a
+if b > maxi:
+    maxi = b
+if c > maxi:
+    maxi = c
+print("Plus grand :", maxi)</pre></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>6. 🧠 Auto-évaluation</h2>
+    <div class="activity">
+      <div class="act-head"><span class="act-icon">🧠</span><span class="act-title">QCM</span><span class="act-type qcm">Auto-éval</span></div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">1. Les 2 formes au programme ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p5_q0" data-correct="true" data-explain="Si…Alors et Si…Alors…Sinon."> Simple et Complète</label>
+          <label><input type="radio" name="p5_q0" data-correct="false" data-explain="La généralisée est en 3ème."> Simple et Généralisée</label>
+          <label><input type="radio" name="p5_q0" data-correct="false" data-explain="Le Selon est en 3ème."> Simple et Selon</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">2. <code>FinSi</code> s'écrit ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p5_q1" data-correct="false" data-explain="Un seul mot."> Fin Si</label>
+          <label><input type="radio" name="p5_q1" data-correct="true" data-explain="Un seul mot."> FinSi</label>
+          <label><input type="radio" name="p5_q1" data-correct="false" data-explain="Pas du français."> end if</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">3. <code>if x = 5:</code> correct ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p5_q2" data-correct="false" data-explain="= est une affectation."> Oui</label>
+          <label><input type="radio" name="p5_q2" data-correct="true" data-explain="== est la comparaison."> Non, il faut <code>if x == 5:</code></label>
+          <label><input type="radio" name="p5_q2" data-correct="false" data-explain="Non."> Non, <code>if (x, 5):</code></label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">4. <code>(a > 0) and (b > 0)</code> ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p5_q3" data-correct="false" data-explain="C'est or."> Teste OU</label>
+          <label><input type="radio" name="p5_q3" data-correct="true" data-explain="Conjonction."> Teste ET</label>
+          <label><input type="radio" name="p5_q3" data-correct="false" data-explain="Non."> Teste a=b</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <button class="qcm-btn" onclick="checkQCM(this)">✓ Vérifier</button>
+      <button class="qcm-btn" style="background:linear-gradient(135deg,#607D8B,#78909C);" onclick="resetQCM(this)">↺ Réinitialiser</button>
+      <p class="qcm-summary" style="margin-top:10px;font-weight:bold;"></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. ✏️ Exercices</h2>
+    <div class="exercice" data-niveau="1">
+      <div class="ex-head"><span class="ex-num">Ex 1</span><span class="ex-niveau">⭐ Facile</span></div>
+      <div class="ex-enonce">Vérifier si n est positif ou négatif.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME PositifNegatif
+DEBUT
+    Lire (n)
+    Si n ≥ 0 Alors
+        Écrire ("Positif")
+    Sinon
+        Écrire ("Négatif")
+    FinSi
+FIN</pre></td>
+            <td class="python"><pre>n = int(input("n = "))
+if n >= 0:
+    print("Positif")
+else:
+    print("Négatif")</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="exercice" data-niveau="2">
+      <div class="ex-head"><span class="ex-num">Ex 2</span><span class="ex-niveau">⭐⭐ Moyen</span></div>
+      <div class="ex-enonce">Afficher le plus grand de deux nombres.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME PlusGrand
+DEBUT
+    Lire (a)
+    Lire (b)
+    Si a > b Alors
+        Écrire ("Plus grand : ", a)
+    Sinon
+        Écrire ("Plus grand : ", b)
+    FinSi
+FIN</pre></td>
+            <td class="python"><pre>a = float(input("a = "))
+b = float(input("b = "))
+if a > b:
+    print("Plus grand :", a)
+else:
+    print("Plus grand :", b)</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="exercice" data-niveau="3">
+      <div class="ex-head"><span class="ex-num">Ex 3</span><span class="ex-niveau">⭐⭐⭐ Difficile</span></div>
+      <div class="ex-enonce">Vérifier si n est divisible par 3.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME Divisible3
+DEBUT
+    Lire (n)
+    Si n Mod 3 = 0 Alors
+        Écrire (n, " divisible par 3")
+    Sinon
+        Écrire (n, " non divisible par 3")
+    FinSi
+FIN</pre></td>
+            <td class="python"><pre>n = int(input("n = "))
+if n % 3 == 0:
+    print(n, "divisible par 3")
+else:
+    print(n, "non divisible par 3")</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="exercice" data-niveau="3">
+      <div class="ex-head"><span class="ex-num">Ex 4</span><span class="ex-niveau">⭐⭐⭐ Difficile</span></div>
+      <div class="ex-enonce">Déterminer si une année est bissextile.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME Bissextile
+DEBUT
+    Lire (annee)
+    Si ((annee Mod 4 = 0) Et (annee Mod 100 ≠ 0))
+       Ou (annee Mod 400 = 0) Alors
+        Écrire ("Bissextile")
+    Sinon
+        Écrire ("Non bissextile")
+    FinSi
+FIN</pre></td>
+            <td class="python"><pre>annee = int(input("Année = "))
+if ((annee % 4 == 0) and (annee % 100 != 0)) or (annee % 400 == 0):
+    print("Bissextile")
+else:
+    print("Non bissextile")</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="chap-essentiel">
+    <h2>🔑 L'essentiel</h2>
+    <div class="essentiel-grid">
+      <div class="ess-card">
+        <h3>À retenir</h3>
+        <ul>
+          <li><strong>2 formes</strong> : simple et complète</li>
+          <li><code>FinSi</code> (1 mot)</li>
+          <li>Python : <code>if</code>, <code>else</code>, <code>:</code>, indentation</li>
+          <li>Comparaison : <code>=</code>, <code>≠</code>, <code>&gt;</code>, <code>&lt;</code>, <code>≥</code>, <code>≤</code></li>
+          <li>Logiques : <code>Et</code>, <code>Ou</code>, <code>Non</code></li>
+          <li><strong>Piège</strong> : <code>=</code> ≠ <code>==</code></li>
+        </ul>
+      </div>
+      <div class="ess-card">
+        <h3>Syntaxes clés</h3>
+        <pre><code># Simple
+if cond :
+    ...
+
+# Complète
+if cond :
+    ...
+else :
+    ...
+
+# Composée
+if (cond1) and (cond2) :
+    ...</code></pre>
+      </div>
+      <div class="ess-card">
+        <h3>Méthodes</h3>
+        <ol>
+          <li>Choisir la forme adaptée</li>
+          <li>Ordonner du spécifique au général</li>
+          <li>Tester vrai/faux</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <nav class="chap-nav">
+    <a class="prev" href="#partie4">← Partie 4</a>
+    <a class="sommaire" href="#accueil">☰ Sommaire</a>
+    <a class="next" href="#partie6">Partie 6 →</a>
+  </nav>
+</section>
+
+<!-- PARTIE 6 -->
+<section id="partie6">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <div style="font-size:.72rem;opacity:.9;letter-spacing:2px;">PARTIE 6</div>
+    <h1>🔁 La boucle Pour</h1>
+    <p class="sous-titre">Répétition · Compteur · Boucles imbriquées</p>
+  </div>
+
+  <div class="section">
+    <h2>Introduction</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Une <strong>boucle</strong> permet de <strong>répéter un traitement</strong>. La boucle <strong>Pour</strong> s'utilise quand on connaît <strong>le nombre de répétitions</strong>.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>1. La boucle Pour</h2>
+    <h3>Syntaxe</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>Pour compteur de Vi à Vf [Pas = P] Faire
+    <traitement>
+Fin Pour</pre></td>
+        <td class="python"><pre>for compteur in range(Vi, Vf+1, P):
+    <traitement></pre></td>
+      </tr>
+    </table>
+    <div class="encadre remarque">
+      <h4>Points clés</h4>
+      <ul>
+        <li><strong>Compteur</strong> : variable entière</li>
+        <li><strong>Pas</strong> par défaut : <strong>1</strong></li>
+        <li><strong>Python</strong> : <code>Vf</code> est <strong>exclue</strong> → <code>range(Vi, Vf+1)</code></li>
+      </ul>
+    </div>
+    <h3>Exemple — 1 à 10</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Compteur
+DEBUT
+    Pour i de 1 à 10 Faire
+        Écrire (i)
+    Fin Pour
+FIN</pre></td>
+        <td class="python"><pre>for i in range(1, 11):
+    print(i)</pre></td>
+      </tr>
+    </table>
+    <div class="py-runner" data-title="1 à n">
+      <script type="text/x-python">
+n = int(input("n = "))
+for i in range(1, n + 1):
+    print(i)
+      </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Compteur et pas</h2>
+    <h3>Pas</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>Pour i de 1 à 10 [Pas = 2] Faire
+    <traitement>
+Fin Pour</pre></td>
+        <td class="python"><pre>for i in range(1, 11, 2):
+    <traitement></pre></td>
+      </tr>
+    </table>
+    <h3>Boucle décroissante</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>Pour i de 10 à 1 [Pas = -1] Faire
+    <traitement>
+Fin Pour</pre></td>
+        <td class="python"><pre>for i in range(10, 0, -1):
+    <traitement></pre></td>
+      </tr>
+    </table>
+    <h3>Formes de range()</h3>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Syntaxe</th><th>Valeurs</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td><code>range(n)</code></td><td>0, 1, …, n-1</td><td>n tours</td></tr>
+          <tr><td><code>range(a, b)</code></td><td>a, …, b-1</td><td>De a à b-1</td></tr>
+          <tr><td><code>range(a, b, 2)</code></td><td>a, a+2, …</td><td>Pas de 2</td></tr>
+          <tr><td><code>range(b, a, -1)</code></td><td>b, b-1, …</td><td>Décrément</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Exemples progressifs</h2>
+    <h3>3.1 Somme des n premiers entiers</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME SommeN
+DEBUT
+    Lire (n)
+    s ← 0
+    Pour i de 1 à n Faire
+        s ← s + i
+    Fin Pour
+    Écrire ("Somme = ", s)
+FIN</pre></td>
+        <td class="python"><pre>n = int(input("n = "))
+s = 0
+for i in range(1, n+1):
+    s = s + i
+print("Somme =", s)</pre></td>
+      </tr>
+    </table>
+    <h3>3.2 Table de 7</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Table7
+DEBUT
+    Pour i de 1 à 10 Faire
+        Écrire (i, " x 7 = ", i * 7)
+    Fin Pour
+FIN</pre></td>
+        <td class="python"><pre>for i in range(1, 11):
+    print(i, "x 7 =", i * 7)</pre></td>
+      </tr>
+    </table>
+    <h3>3.3 Factorielle</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Factorielle
+DEBUT
+    Lire (n)
+    f ← 1
+    Pour i de 1 à n Faire
+        f ← f * i
+    Fin Pour
+    Écrire ("n! = ", f)
+FIN</pre></td>
+        <td class="python"><pre>n = int(input("n = "))
+f = 1
+for i in range(1, n+1):
+    f = f * i
+print("n! =", f)</pre></td>
+      </tr>
+    </table>
+    <div class="encadre astuce">
+      <h4>Différence</h4>
+      <p>Factorielle : <code>f ← 1</code> (multiplication).</p>
+    </div>
+    <h3>3.4 Nombres pairs</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Pairs
+DEBUT
+    Pour i de 2 à 20 [Pas = 2] Faire
+        Écrire (i)
+    Fin Pour
+FIN</pre></td>
+        <td class="python"><pre>for i in range(2, 21, 2):
+    print(i)</pre></td>
+      </tr>
+    </table>
+    <h3>3.5 Compter les 5</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Compter5
+DEBUT
+    c ← 0
+    Pour i de 1 à 10 Faire
+        Lire (x)
+        Si x = 5 Alors
+            c ← c + 1
+        FinSi
+    Fin Pour
+    Écrire ("Nombre de 5 : ", c)
+FIN</pre></td>
+        <td class="python"><pre>c = 0
+for i in range(1, 11):
+    x = int(input("x = "))
+    if x == 5:
+        c = c + 1
+print("Nombre de 5 :", c)</pre></td>
+      </tr>
+    </table>
+    <h3>3.6 TP — Somme, factorielle, table</h3>
+    <div class="py-runner" data-title="Somme, factorielle, table">
+      <script type="text/x-python">
+n = int(input("n = "))
+s = 0
+for i in range(1, n+1):
+    s = s + i
+print("Somme =", s)
+f = 1
+for i in range(1, n+1):
+    f = f * i
+print("Factorielle =", f)
+for i in range(1, 11):
+    print(i, "x", n, "=", i * n)
+      </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Boucles imbriquées</h2>
+    <div class="encadre definition">
+      <h4>Définition</h4>
+      <p>Une <strong>boucle imbriquée</strong> est une boucle à l'intérieur d'une autre. À chaque tour externe, la boucle interne s'exécute en entier.</p>
+    </div>
+    <h3>4.1 Triangle d'étoiles</h3>
+    <div class="encadre exemple">
+      <h4>Résultat</h4>
+      <pre>*
+**
+***
+****
+*****</pre>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Triangle
+DEBUT
+    Pour i de 1 à 5 Faire
+        Pour j de 1 à i Faire
+            Écrire ("*")
+        Fin Pour
+        Écrire ("")
+    Fin Pour
+FIN</pre></td>
+        <td class="python"><pre>for i in range(1, 6):
+    for j in range(1, i+1):
+        print("*", end="")
+    print()</pre></td>
+      </tr>
+    </table>
+    <h3>4.2 Carré 4×4</h3>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Carre
+DEBUT
+    Pour i de 1 à 4 Faire
+        Pour j de 1 à 4 Faire
+            Écrire ("*")
+        Fin Pour
+        Écrire ("")
+    Fin Pour
+FIN</pre></td>
+        <td class="python"><pre>for i in range(1, 5):
+    for j in range(1, 5):
+        print("*", end="")
+    print()</pre></td>
+      </tr>
+    </table>
+    <h3>4.3 TP — Triangle</h3>
+    <div class="py-runner" data-title="Triangle d'étoiles">
+      <script type="text/x-python">
+n = int(input("Nombre de lignes : "))
+for i in range(1, n+1):
+    for j in range(1, i+1):
+        print("*", end="")
+    print()
+      </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 🧠 Auto-évaluation</h2>
+    <div class="activity">
+      <div class="act-head"><span class="act-icon">🧠</span><span class="act-title">QCM</span><span class="act-type qcm">Auto-éval</span></div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">1. Quand utiliser Pour ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p6_q0" data-correct="true" data-explain="Nombre de répétitions connu."> Quand le nombre de répétitions est connu</label>
+          <label><input type="radio" name="p6_q0" data-correct="false" data-explain="Non."> Quand on ne sait pas combien</label>
+          <label><input type="radio" name="p6_q0" data-correct="false" data-explain="Non."> Jamais</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">2. <code>for i in range(1, 6)</code> ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p6_q1" data-correct="false" data-explain="6 exclu."> 1 à 6</label>
+          <label><input type="radio" name="p6_q1" data-correct="true" data-explain="range(1,6) = 1,2,3,4,5."> 1 à 5</label>
+          <label><input type="radio" name="p6_q1" data-correct="false" data-explain="Non."> 0 à 5</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">3. Triangle 5 lignes, combien d'étoiles ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p6_q2" data-correct="false" data-explain="Trop peu."> 5</label>
+          <label><input type="radio" name="p6_q2" data-correct="true" data-explain="1+2+3+4+5 = 15."> 15</label>
+          <label><input type="radio" name="p6_q2" data-correct="false" data-explain="Trop."> 25</label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <div class="qcm-question-block">
+        <p class="qcm-question">4. Afficher sans retour à la ligne ?</p>
+        <div class="qcm-options">
+          <label><input type="radio" name="p6_q3" data-correct="false" data-explain="print ajoute un retour."> Rien</label>
+          <label><input type="radio" name="p6_q3" data-correct="true" data-explain="end='' évite le retour."> <code>print(x, end="")</code></label>
+          <label><input type="radio" name="p6_q3" data-correct="false" data-explain="Syntaxe incorrecte."> <code>write(x)</code></label>
+        </div>
+        <div class="qcm-feedback"></div>
+      </div>
+      <button class="qcm-btn" onclick="checkQCM(this)">✓ Vérifier</button>
+      <button class="qcm-btn" style="background:linear-gradient(135deg,#607D8B,#78909C);" onclick="resetQCM(this)">↺ Réinitialiser</button>
+      <p class="qcm-summary" style="margin-top:10px;font-weight:bold;"></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. ✏️ Exercices</h2>
+    <div class="exercice" data-niveau="1">
+      <div class="ex-head"><span class="ex-num">Ex 1</span><span class="ex-niveau">⭐ Facile</span></div>
+      <div class="ex-enonce">Afficher les nombres pairs de 1 à 30.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME Pairs
+DEBUT
+    Pour i de 2 à 30 [Pas = 2] Faire
+        Écrire (i)
+    Fin Pour
+FIN</pre></td>
+            <td class="python"><pre>for i in range(2, 31, 2):
+    print(i)</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="exercice" data-niveau="2">
+      <div class="ex-head"><span class="ex-num">Ex 2</span><span class="ex-niveau">⭐⭐ Moyen</span></div>
+      <div class="ex-enonce">Somme des entiers de 1 à n.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME SommeN
+DEBUT
+    Lire (n)
+    s ← 0
+    Pour i de 1 à n Faire
+        s ← s + i
+    Fin Pour
+    Écrire ("Somme = ", s)
+FIN</pre></td>
+            <td class="python"><pre>n = int(input("n = "))
+s = 0
+for i in range(1, n+1):
+    s = s + i
+print("Somme =", s)</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="exercice" data-niveau="3">
+      <div class="ex-head"><span class="ex-num">Ex 3</span><span class="ex-niveau">⭐⭐⭐ Difficile</span></div>
+      <div class="ex-enonce">Factorielle de n.</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME Factorielle
+DEBUT
+    Lire (n)
+    f ← 1
+    Pour i de 1 à n Faire
+        f ← f * i
+    Fin Pour
+    Écrire ("n! = ", f)
+FIN</pre></td>
+            <td class="python"><pre>n = int(input("n = "))
+f = 1
+for i in range(1, n+1):
+    f = f * i
+print("n! =", f)</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="exercice" data-niveau="3">
+      <div class="ex-head"><span class="ex-num">Ex 4</span><span class="ex-niveau">⭐⭐⭐ Difficile</span></div>
+      <div class="ex-enonce">Afficher 10 à 1 (décroissant).</div>
+      <button class="reveal-btn" onclick="toggleSolution(this)">👁️ Voir la solution</button>
+      <div class="solution">
+        <table class="duo-table">
+          <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+          <tr>
+            <td class="algo"><pre>ALGORITHME Decroissant
+DEBUT
+    Pour i de 10 à 1 [Pas = -1] Faire
+        Écrire (i)
+    Fin Pour
+FIN</pre></td>
+            <td class="python"><pre>for i in range(10, 0, -1):
+    print(i)</pre></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="chap-essentiel">
+    <h2>🔑 L'essentiel</h2>
+    <div class="essentiel-grid">
+      <div class="ess-card">
+        <h3>À retenir</h3>
+        <ul>
+          <li><strong>Pour</strong> : répétitions <strong>connues</strong></li>
+          <li>Algo : <code>Pour i de Vi à Vf Faire ... Fin Pour</code></li>
+          <li>Python : <code>for i in range(Vi, Vf+1):</code></li>
+          <li><code>Vf</code> est <strong>exclue</strong> dans <code>range</code></li>
+          <li>Le <strong>pas</strong> saute des valeurs</li>
+          <li>Pas négatif → décrémenter</li>
+          <li>Boucles <strong>imbriquées</strong> possibles</li>
+        </ul>
+      </div>
+      <div class="ess-card">
+        <h3>Syntaxes clés</h3>
+        <pre><code># Croissante
+for i in range(1, n+1):
+    ...
+
+# Avec pas
+for i in range(1, 11, 2):
+    ...
+
+# Décroissante
+for i in range(10, 0, -1):
+    ...
+
+# Imbriquée
+for i in range(1, 6):
+    for j in range(1, i+1):
+        print("*", end="")
+    print()</code></pre>
+      </div>
+      <div class="ess-card">
+        <h3>Méthodes</h3>
+        <ol>
+          <li>Vérifier si le nombre est connu</li>
+          <li>Utiliser range(Vi, Vf+1)</li>
+          <li>Ne pas modifier le compteur</li>
+          <li><code>end=''</code> pour pas de retour</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <nav class="chap-nav">
+    <a class="prev" href="#partie5">← Partie 5</a>
+    <a class="sommaire" href="#accueil">☰ Sommaire</a>
+    <a class="next" href="#partie7">Partie 7 →</a>
+  </nav>
+</section>
+
+<!-- PARTIE 7 -->
+<section id="partie7">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <div style="font-size:.72rem;opacity:.9;letter-spacing:2px;">PARTIE 7</div>
+    <h1>🚀 Projets</h1>
+    <p class="sous-titre">5 projets concrets</p>
+  </div>
+
+  <div class="section">
+    <h2>🎲 Projet 1 — Jeu de devinette</h2>
+    <div class="encadre exemple">
+      <h4>Énoncé</h4>
+      <p>L'ordinateur choisit un nombre, le joueur devine en 5 essais.</p>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Devinette
+DEBUT
+    cible ← Aléa(1, 50)
+    trouve ← Faux
+    Pour essai de 1 à 5 Faire
+        Si Non trouve Alors
+            Lire (x)
+            Si x = cible Alors
+                Écrire ("Bravo !")
+                trouve ← Vrai
+            Sinon
+                Si x < cible Alors
+                    Écrire ("Trop petit")
+                Sinon
+                    Écrire ("Trop grand")
+                FinSi
+            FinSi
+        FinSi
+    Fin Pour
+    Si Non trouve Alors
+        Écrire ("Perdu ! C'était ", cible)
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>from random import randint
+
+cible = randint(1, 50)
+trouve = False
+
+for essai in range(1, 6):
+    if not trouve:
+        x = int(input("Essai : "))
+        if x == cible:
+            print("Bravo !")
+            trouve = True
+        else:
+            if x < cible:
+                print("Trop petit")
+            else:
+                print("Trop grand")
+
+if not trouve:
+    print("Perdu ! C'était", cible)</pre></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🧮 Projet 2 — Calculatrice</h2>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Calculatrice
+DEBUT
+    Lire (a)
+    Lire (b)
+    Lire (op)
+    Si op = '+' Alors
+        Écrire (a + b)
+    Sinon
+        Si op = '-' Alors
+            Écrire (a - b)
+        Sinon
+            Si op = '*' Alors
+                Écrire (a * b)
+            Sinon
+                Si b ≠ 0 Alors
+                    Écrire (a / b)
+                Sinon
+                    Écrire ("Division par 0")
+                FinSi
+            FinSi
+        FinSi
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>a = float(input("a = "))
+b = float(input("b = "))
+op = input("Opérateur : ")
+
+if op == '+':
+    print(a + b)
+else:
+    if op == '-':
+        print(a - b)
+    else:
+        if op == '*':
+            print(a * b)
+        else:
+            if b != 0:
+                print(a / b)
+            else:
+                print("Division par 0")</pre></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>✖️ Projet 3 — Table de multiplication</h2>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Table
+DEBUT
+    Lire (n)
+    Pour i de 1 à 10 Faire
+        Écrire (n, " x ", i, " = ", n * i)
+    Fin Pour
+FIN</pre></td>
+        <td class="python"><pre>n = int(input("n = "))
+for i in range(1, 11):
+    print(n, "x", i, "=", n * i)</pre></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>📏 Projet 4 — Convertisseur</h2>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME ConvertTemp
+DEBUT
+    Lire (temp)
+    Lire (unite)
+    Si unite = 'C' Alors
+        f ← temp * 9 / 5 + 32
+        Écrire (f, " °F")
+    Sinon
+        c ← (temp - 32) * 5 / 9
+        Écrire (c, " °C")
+    FinSi
+FIN</pre></td>
+        <td class="python"><pre>temp = float(input("Temp : "))
+unite = input("C ou F : ")
+
+if unite == 'C':
+    f = temp * 9 / 5 + 32
+    print(f, "°F")
+else:
+    c = (temp - 32) * 5 / 9
+    print(c, "°C")</pre></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>⭐ Projet 5 — Dessin d'étoiles</h2>
+    <div class="encadre exemple">
+      <h4>Pyramide</h4>
+      <pre>    *
+   ***
+  *****
+ *******
+*********</pre>
+    </div>
+    <table class="duo-table">
+      <tr><th>📘 ALGORITHME</th><th>🐍 PYTHON</th></tr>
+      <tr>
+        <td class="algo"><pre>ALGORITHME Pyramide
+DEBUT
+    Pour i de 1 à 5 Faire
+        Pour j de 1 à (5 - i) Faire
+            Écrire (" ")
+        Fin Pour
+        Pour k de 1 à (2 * i - 1) Faire
+            Écrire ("*")
+        Fin Pour
+        Écrire ("")
+    Fin Pour
+FIN</pre></td>
+        <td class="python"><pre>for i in range(1, 6):
+    for j in range(1, 6 - i):
+        print(" ", end="")
+    for k in range(1, 2 * i):
+        print("*", end="")
+    print()</pre></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🎓 Récapitulatif général</h2>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Notion</th><th>Syntaxe clé</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pensée computationnelle</strong></td><td>D-R-A-A</td></tr>
+          <tr><td><strong>Démarche</strong></td><td>C-A-C-V</td></tr>
+          <tr><td><strong>Types</strong></td><td>E-R-B-C-C</td></tr>
+          <tr><td><strong>Entrée</strong></td><td><code>Lire (a)</code> ↔ <code>a = int(input())</code></td></tr>
+          <tr><td><strong>Sortie</strong></td><td><code>Écrire ("Msg", a)</code> ↔ <code>print("Msg", a)</code></td></tr>
+          <tr><td><strong>Affectation</strong></td><td><code>a ← 5</code> ↔ <code>a = 5</code></td></tr>
+          <tr><td><strong>Conditionnelle</strong></td><td><code>Si…Alors…FinSi</code> ↔ <code>if…:</code></td></tr>
+          <tr><td><strong>Boucle Pour</strong></td><td><code>Pour i de 1 à n</code> ↔ <code>for i in range(1, n+1):</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <nav class="chap-nav">
+    <a class="prev" href="#partie6">← Partie 6</a>
+    <a class="sommaire" href="#accueil">☰ Sommaire</a>
+    <a class="next" href="#glossaire">Glossaire →</a>
+  </nav>
+</section>
+
+<!-- GLOSSAIRE -->
+<section id="glossaire">
+  <div class="partie-header" style="background:linear-gradient(135deg,#B71C1C,#E53935);">
+    <h1>📚 Glossaire</h1>
+  </div>
+  <div class="section">
+    <p>Définitions des termes essentiels, classées par ordre alphabétique.</p>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th style="width:32%;">Terme</th><th>Définition</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Abstraction</strong></td><td>Se concentrer sur l'essentiel.</td></tr>
+          <tr><td><strong>Affectation</strong></td><td><code>x ← 5</code> / <code>x = 5</code></td></tr>
+          <tr><td><strong>Algorithme</strong></td><td>Suite d'instructions ordonnées.</td></tr>
+          <tr><td><strong>Boucle Pour</strong></td><td>Répétition un nombre connu de fois.</td></tr>
+          <tr><td><strong>Booléen</strong></td><td>2 valeurs : Vrai / Faux.</td></tr>
+          <tr><td><strong>C-A-C-V</strong></td><td>Comprendre, Analyser, Concevoir, Vérifier.</td></tr>
+          <tr><td><strong>Caractère</strong></td><td>Symbole unique.</td></tr>
+          <tr><td><strong>Chaîne</strong></td><td>Succession de caractères.</td></tr>
+          <tr><td><strong>Conditionnelle</strong></td><td>Si…Alors / Si…Sinon.</td></tr>
+          <tr><td><strong>D-R-A-A</strong></td><td>Décomposition, Reconnaissance, Abstraction, Algorithme.</td></tr>
+          <tr><td><strong>Décomposition</strong></td><td>Diviser en sous-problèmes.</td></tr>
+          <tr><td><strong>Entier</strong></td><td>Sans partie décimale.</td></tr>
+          <tr><td><strong>Indentation</strong></td><td>Décalage Python (4 espaces).</td></tr>
+          <tr><td><strong>Lire</strong></td><td>Opération d'entrée.</td></tr>
+          <tr><td><strong>Réel</strong></td><td>Avec partie décimale.</td></tr>
+          <tr><td><strong>TDO</strong></td><td>Tableau de Déclaration des Objets.</td></tr>
+          <tr><td><strong>Variable</strong></td><td>Valeur qui peut changer.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📎 Tableaux de référence</h2>
+    <h3>Types</h3>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Algo</th><th>Python</th><th>Exemples</th></tr></thead>
+        <tbody>
+          <tr><td>Entier</td><td><code>int</code></td><td>5, -12</td></tr>
+          <tr><td>Réel</td><td><code>float</code></td><td>3.14</td></tr>
+          <tr><td>Booléen</td><td><code>bool</code></td><td>True, False</td></tr>
+          <tr><td>Caractère</td><td><code>str</code></td><td>'A'</td></tr>
+          <tr><td>Chaîne</td><td><code>str</code></td><td>"Tunis"</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Erreurs fréquentes</h3>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead><tr><th>Erreur</th><th>Correction</th></tr></thead>
+        <tbody>
+          <tr><td><code>Algorithme</code> en minuscules</td><td><code>ALGORITHME</code></td></tr>
+          <tr><td><code>Début</code> avec accent</td><td><code>DEBUT</code></td></tr>
+          <tr><td><code>Fin Si</code></td><td><code>FinSi</code></td></tr>
+          <tr><td>Oublier <code>input()</code> → convertir</td><td><code>int(input())</code></td></tr>
+          <tr><td>Confondre <code>=</code> et <code>==</code></td><td><code>=</code> affecte, <code>==</code> compare</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="encadre retenir">
+      <h4>🎯 Les 5 règles d'or</h4>
+      <ol>
+        <li><strong>Comprendre</strong> avant de coder</li>
+        <li><strong>Analyser</strong> en E/T/S</li>
+        <li><strong>Concevoir</strong> l'algorithme</li>
+        <li><strong>Vérifier</strong> avec plusieurs tests</li>
+        <li><strong>Commenter</strong> le code</li>
+      </ol>
+    </div>
+  </div>
+
+  <nav class="chap-nav">
+    <a class="prev" href="#partie7">← Partie 7</a>
+    <a class="sommaire" href="#accueil">☰ Sommaire</a>
+    <a class="next" href="#accueil">Accueil →</a>
+  </nav>
+</section>
+
+</main>
+
+<footer>
+  <p>📕 Manuel d'Informatique — 2ème année Sciences</p>
+  <p style="opacity:.85;margin-top:4px;font-size:.7rem;">Conforme à l'Aide pédagogique 2024-2025 — Ministère de l'Éducation Tunisienne</p>
+  <p style="opacity:.85;margin-top:4px;font-size:.7rem;">🤖 Powered by TutorBot AI</p>
+</footer>
+
+<!-- ⬇⬇⬇ الجزء الثالث (JavaScript) سيُلصق هنا ⬇⬇⬇ -->
+ <script>
+/* ============================================================
+   1. COURS.JS — QCM + Exercices
+   ============================================================ */
+function checkQCM(btn) {
+  var activity = btn.closest('.activity');
+  var questions = activity.querySelectorAll('.qcm-question-block');
+  var total = 0, correct = 0;
+  questions.forEach(function (q) {
+    total++;
+    var sel = q.querySelector('input[type="radio"]:checked');
+    var labels = q.querySelectorAll('label');
+    var fb = q.querySelector('.qcm-feedback');
+    labels.forEach(function (l) { l.classList.remove('correct', 'wrong'); });
+    if (!sel) { fb.textContent = 'Aucune réponse.'; fb.className = 'qcm-feedback ko'; return; }
+    var ok = sel.dataset.correct === 'true';
+    sel.parentElement.classList.add(ok ? 'correct' : 'wrong');
+    labels.forEach(function (l) {
+      if (l.querySelector('input').dataset.correct === 'true' && !ok)
+        l.classList.add('correct');
+    });
+    if (ok) { correct++; fb.textContent = '✓ Correct ! ' + (sel.dataset.explain || '');
+      fb.className = 'qcm-feedback ok'; }
+    else { fb.textContent = '✗ Incorrect. ' + (sel.dataset.explain || '');
+      fb.className = 'qcm-feedback ko'; }
+  });
+  var s = activity.querySelector('.qcm-summary');
+  if (s) { s.textContent = 'Score : ' + correct + ' / ' + total;
+    s.style.color = correct === total ? '#2E7D32'
+      : (correct >= total / 2 ? '#E65100' : '#c62828'); }
+}
+
+function resetQCM(btn) {
+  var a = btn.closest('.activity');
+  a.querySelectorAll('input[type="radio"]').forEach(function (i) { i.checked = false; });
+  a.querySelectorAll('.qcm-options label').forEach(function (l) {
+    l.classList.remove('correct', 'wrong'); });
+  a.querySelectorAll('.qcm-feedback').forEach(function (f) {
+    f.textContent = ''; f.className = 'qcm-feedback'; });
+  var s = a.querySelector('.qcm-summary'); if (s) s.textContent = '';
+}
+
+function toggleSolution(btn) {
+  let solutionDiv = btn.nextElementSibling;
+  if (solutionDiv && solutionDiv.classList.contains('solution')) {
+    solutionDiv.classList.toggle('visible');
+    if (solutionDiv.classList.contains('visible')) {
+      btn.textContent = '🙈 Masquer la solution';
+    } else {
+      btn.textContent = '👁️ Voir la solution';
+    }
+  }
+}
+
+/* ============================================================
+   2. PY-RUNNER.JS — Exécuteur Python
+   ============================================================ */
+(function () {
+  'use strict';
+  var PYODIDE_VERSION = '0.26.1';
+  var PYODIDE_BASE = 'https://cdn.jsdelivr.net/pyodide/v' + PYODIDE_VERSION + '/full/';
+  var promise = null, instance = null;
+
+  function loadScript(src) {
+    return new Promise(function (res, rej) {
+      var s = document.createElement('script');
+      s.src = src; s.async = true;
+      s.onload = res; s.onerror = function () { rej(new Error('Echec ' + src)); };
+      document.head.appendChild(s);
+    });
+  }
+
+  function getPyodide() {
+    if (instance) return Promise.resolve(instance);
+    if (promise) return promise;
+    promise = (async function () {
+      if (typeof window.loadPyodide === 'undefined')
+        await loadScript(PYODIDE_BASE + 'pyodide.js');
+      var py = await window.loadPyodide({ indexURL: PYODIDE_BASE });
+      await py.loadPackage('numpy');
+      instance = py; return py;
+    })();
+    promise.catch(function () { promise = null; });
+    return promise;
+  }
+
+  window.__preloadPyodide = function () { return getPyodide().catch(function () {}); };
+
+  async function runCode(code, inputs) {
+    var py = await getPyodide();
+    var chunks = [];
+    var dec = new TextDecoder('utf-8');
+    py.setStdout({ write: function (b) { chunks.push(dec.decode(b)); return b.length; } });
+    py.setStderr({ write: function (b) { chunks.push(dec.decode(b)); return b.length; } });
+    py.globals.set('__user_code__', code);
+    py.globals.set('__user_inputs__', inputs || []);
+    try {
+      await py.runPythonAsync([
+        'import builtins, sys',
+        '__it = iter(__user_inputs__)',
+        'def __inp(p=""):',
+        '    if p:',
+        '        sys.stdout.write(str(p)); sys.stdout.flush()',
+        '    try:',
+        '        v = str(next(__it))',
+        '        sys.stdout.write(v + "\\n"); sys.stdout.flush()',
+        '        return v',
+        '    except StopIteration:',
+        '        raise EOFError("Aucune entree.")',
+        'builtins.input = __inp',
+        '__ns = {"__name__": "__main__", "__builtins__": builtins}',
+        'try: exec(compile(__user_code__, "<cours>", "exec"), __ns)',
+        'finally: sys.stdout.flush(); sys.stderr.flush()'
+      ].join('\n'));
+    } catch (e) {
+      chunks.push('\n' + ((e && e.message) ? e.message : String(e)));
+    } finally {
+      try { py.globals.delete('__user_code__'); } catch (x) {}
+      try { py.globals.delete('__user_inputs__'); } catch (x) {}
+    }
+    return chunks.join('');
+  }
+
+  function autoSize(ta) {
+    ta.style.height = 'auto';
+    ta.style.height = Math.max(100, ta.scrollHeight + 4) + 'px';
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+
+  function buildRunner(root) {
+    var src = root.querySelector('script[type="text/x-python"]');
+    if (!src) return;
+    var initial = src.textContent.replace(/^\n+/, '').replace(/\s+$/, '');
+    src.remove();
+    var title = root.dataset.title || 'Python — Essai libre';
+    var showInputs = root.dataset.inputs !== 'false';
+    root.classList.add('py-runner-ready');
+    root.innerHTML =
+      '<div class="py-runner-header"><span class="py-runner-title">' + esc(title) + '</span>'
+      + '<div class="py-runner-actions">'
+        + '<button class="py-btn py-run" type="button">▶ Exécuter</button>'
+        + '<button class="py-btn py-copy" type="button">📋 Copier</button>'
+        + '<button class="py-btn py-reset" type="button">↺ Réinit.</button>'
+      + '</div></div>'
+      + '<div class="py-editor-wrap"><textarea class="py-editor" spellcheck="false"></textarea></div>'
+      + (showInputs
+        ? '<div class="py-inputs-wrap"><label class="py-inputs-label">'
+          + 'Entrées (une par ligne)</label>'
+          + '<textarea class="py-inputs" spellcheck="false" '
+          + 'placeholder="Exemple : 3 puis 5"></textarea></div>'
+        : '')
+      + '<div class="py-output-wrap"><div class="py-output-head">'
+        + '<span>Sortie console</span><span class="py-status"></span></div>'
+        + '<pre class="py-output">Cliquez sur Exécuter pour lancer le code...</pre></div>';
+
+    var editor = root.querySelector('.py-editor');
+    var inputsArea = root.querySelector('.py-inputs');
+    var outputEl = root.querySelector('.py-output');
+    var statusEl = root.querySelector('.py-status');
+    var btnRun = root.querySelector('.py-run');
+    var btnCopy = root.querySelector('.py-copy');
+    var btnReset = root.querySelector('.py-reset');
+
+    editor.value = initial;
+    autoSize(editor);
+    editor.addEventListener('input', function () { autoSize(editor); });
+    editor.addEventListener('keydown', function (e) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        var s = editor.selectionStart, en = editor.selectionEnd;
+        editor.value = editor.value.substring(0, s) + '    ' + editor.value.substring(en);
+        editor.selectionStart = editor.selectionEnd = s + 4;
+        autoSize(editor);
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); btnRun.click(); }
+    });
+    btnCopy.addEventListener('click', async function () {
+      try {
+        await navigator.clipboard.writeText(editor.value);
+        var o = btnCopy.textContent; btnCopy.textContent = '✓ Copié';
+        setTimeout(function () { btnCopy.textContent = o; }, 1400);
+      } catch (x) {}
+    });
+    btnReset.addEventListener('click', function () {
+      editor.value = initial; autoSize(editor);
+      outputEl.textContent = 'Cliquez sur Exécuter...';
+      outputEl.classList.remove('py-error', 'py-success');
+      statusEl.textContent = '';
+    });
+    btnRun.addEventListener('click', async function () {
+      btnRun.disabled = true; btnRun.textContent = '⏳ Exécution...';
+      statusEl.textContent = 'Chargement Python...';
+      outputEl.textContent = 'Chargement Python + numpy (1ère fois ~10 s)...';
+      outputEl.classList.remove('py-error', 'py-success');
+      var inputs = inputsArea
+        ? inputsArea.value.split(/\r?\n/).filter(function (l) { return l.length > 0; })
+        : [];
+      try {
+        var res = await runCode(editor.value, inputs);
+        var err = /Traceback|Error|Exception/i.test(res);
+        outputEl.textContent = res || '(aucune sortie)';
+        outputEl.classList.toggle('py-error', err);
+        outputEl.classList.toggle('py-success', !err);
+        statusEl.textContent = err ? 'Erreur' : 'Terminé';
+        statusEl.className = 'py-status ' + (err ? 'py-ko' : 'py-ok');
+      } catch (e) {
+        outputEl.textContent = 'Erreur : ' + (e.message || e);
+        outputEl.classList.add('py-error');
+        statusEl.textContent = 'Erreur';
+      } finally {
+        btnRun.disabled = false; btnRun.textContent = '▶ Exécuter';
+      }
+    });
+  }
+
+  function init() {
+    document.querySelectorAll('.py-runner').forEach(buildRunner);
+    setTimeout(function () { window.__preloadPyodide().catch(function () {}); }, 2000);
+  }
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ============================================================
+   3. TUTORBOT AI — Groq API Integration (Final & Stable)
+   ============================================================ */
+
+// ⚠️ ضع مفتاح Groq API الخاص بك هنا
+const GROQ_API_KEY = "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"; 
+
+const TB = {
+  open: false, isTyping: false,
+  chatHistory: JSON.parse(localStorage.getItem('tb_chat_history') || '[]'),
+  currentSection: 'accueil',
+  currentSubject: 'Informatique',
+  theme: localStorage.getItem('tb_theme') || 'light',
+};
+
+function applyTheme(t) {
+  if (t === 'dark') document.body.setAttribute('data-theme', 'dark');
+  else document.body.removeAttribute('data-theme');
+  const icon = document.getElementById('themeIcon');
+  if (icon) icon.className = (t === 'dark') ? 'fas fa-sun' : 'fas fa-moon';
+  TB.theme = t;
+  localStorage.setItem('tb_theme', t);
+}
+function toggleTheme() { applyTheme(TB.theme === 'dark' ? 'light' : 'dark'); }
+applyTheme(TB.theme);
+
+function openTutor() {
+  document.getElementById('tutorPanel').classList.add('open');
+  TB.open = true;
+  setTimeout(() => document.getElementById('tutorInput').focus(), 300);
+  if (TB.chatHistory.length === 0) {
+    TB.chatHistory.push({
+      role: 'assistant',
+      content: 'مرحباً! 👋 أنا TutorBot المدعوم بـ Groq AI.\n\nيمكنني:\n- شرح أي درس بسرعة فائقة\n- الانتقال إلى قسم\n- تمييز النصوص\n- حل التمارين\n\nجرب السؤال الآن!'
+    });
+    renderChat();
+  }
+}
+
+function closeTutor() {
+  document.getElementById('tutorPanel').classList.remove('open');
+  TB.open = false;
+}
+
+function renderChat() {
+  const chat = document.getElementById('tutorChat');
+  chat.innerHTML = '';
+  TB.chatHistory.forEach(msg => appendMessageToDOM(msg.role, msg.content, false));
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// الدالة المحدثة (تدعم Markdown وتحديد الاتجاه التلقائي)
+function appendMessageToDOM(role, content, save = true) {
+  if (save) TB.chatHistory.push({ role, content });
+  const chat = document.getElementById('tutorChat');
+  const div = document.createElement('div');
+  div.className = 'tutor-msg ' + (role === 'user' ? 'user' : 'bot');
+  
+  // تحديد الاتجاه تلقائياً (RTL/LTR) لمنع كسر الكلمات
+  div.setAttribute('dir', 'auto');
+
+  const avatar = role === 'user' ? 'أنا' : 'TN';
+  const time = new Date().toLocaleTimeString('ar-TN', { hour: '2-digit', minute: '2-digit' });
+  
+  let formattedContent = '';
+  
+  if (role === 'user') {
+    formattedContent = escapeHtml(content).replace(/\n/g, '<br>');
+  } else {
+    if (typeof marked !== 'undefined') {
+      marked.setOptions({ breaks: true, gfm: true });
+      formattedContent = marked.parse(content);
+    } else {
+      formattedContent = escapeHtml(content).replace(/\n/g, '<br>');
+    }
+  }
+
+  div.innerHTML = `
+    <div class="tutor-avatar">${avatar}</div>
+    <div class="tutor-bubble">
+      <div class="markdown-body">${formattedContent}</div>
+      <div class="tutor-time">${time}</div>
+    </div>
+  `;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+  if (save) localStorage.setItem('tb_chat_history', JSON.stringify(TB.chatHistory));
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+function showTypingIndicator() {
+  const chat = document.getElementById('tutorChat');
+  const div = document.createElement('div');
+  div.className = 'tutor-msg bot';
+  div.id = 'typingIndicator';
+  div.innerHTML = `
+    <div class="tutor-avatar">TN</div>
+    <div class="tutor-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>
+  `;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+async function sendTutorMessage() {
+  const input = document.getElementById('tutorInput');
+  const text = input.value.trim();
+  if (!text || TB.isTyping) return;
+  input.value = '';
+  input.style.height = 'auto';
+  appendMessageToDOM('user', text);
+  await askAI(text);
+}
+
+function quickAsk(text) {
+  document.getElementById('tutorInput').value = text;
+  sendTutorMessage();
+}
+
+document.getElementById('tutorInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendTutorMessage(); }
+});
+document.getElementById('tutorInput').addEventListener('input', (e) => {
+  e.target.style.height = 'auto';
+  e.target.style.height = Math.min(e.target.scrollHeight, 90) + 'px';
+});
+
+function getSectionText(id) {
+  const el = document.getElementById(id);
+  if (!el) return "القسم الحالي غير موجود.";
+  
+  const clone = el.cloneNode(true);
+  clone.querySelectorAll('.chap-nav, button, .tutor-fab, .tutor-panel, .py-runner, script, .breadcrumb').forEach(n => n.remove());
+  
+  let text = clone.innerText.replace(/\s+/g, ' ').trim();
+  return text.substring(0, 3500); 
+}
+
+function buildSystemPrompt() {
+  const sections = [
+    { id: 'partie1', title: 'Pensée computationnelle (D-R-A-A)' },
+    { id: 'partie2', title: 'Démarche C-A-C-V (E/T/S)' },
+    { id: 'partie3', title: 'Types de données (E-R-B-C-C)' },
+    { id: 'partie4', title: 'Structures simples (Lire, Écrire, Affectation)' },
+    { id: 'partie5', title: 'Conditionnelles (Si…Alors, Si…Sinon)' },
+    { id: 'partie6', title: 'Boucle Pour' },
+    { id: 'partie7', title: 'Projets' },
+  ];
+  const summary = sections.map(s => `- #${s.id} : ${s.title}`).join('\n');
+  const currentText = getSectionText(TB.currentSection);
+
+  return `أنت TutorBot، مساعد تعليمي ذكي مدمج في موقع "Manuel d'Informatique 2ème Sciences".
+أنت تعمل حصرياً بناءً على محتوى هذا الموقع.
+
+🗺️ خريطة أقسام الموقع:
+${summary}
+
+📍 التلميذ يقرأ الآن القسم: (${TB.currentSection})
+📖 محتوى هذا القسم (استخدم هذا النص للإجابة):
+"""
+${currentText}
+"""
+
+🎯 تعليمات هامة جداً:
+1. أجب على أسئلة التلميذ بناءً على النص المرفق أعلاه فقط. إذا سأل عن شيء غير موجود، قل له بصراحة أنه غير موجود في هذا القسم واقترح عليه الانتقال لقسم آخر.
+2. إذا طلب منك التلميذ الانتقال لموضوع آخر، أضف في نهاية ردك هذا السطر بالضبط:
+   [ACTION:{"type":"navigate","target":"#partieX"}] (استبدل X برقم القسم المناسب من الخريطة).
+3. إذا طلب منك تمييز أو تظليل نص معين، أضف:
+   [ACTION:{"type":"highlight","target":"#partieX h2"}] (أو h3، أو p حسب العنصر).
+
+⚠️ قواعد اللغة:
+- تحدث بالعربية التونسية المبسطة إذا سأل بالعربية.
+- تحدث بالفرنسية إذا سأل بالفرنسية.
+- كن مختصراً ومفيداً جداً (3-6 أسطر).`;
+}
+
+async function askAI(question) {
+  if (!GROQ_API_KEY || GROQ_API_KEY === "ضع_مفتاح_Groq_هنا") {
+    appendMessageToDOM('assistant', '⚠️ يرجى وضع مفتاح Groq API الخاص بك في الكود لكي يعمل الذكاء الاصطناعي.');
+    return;
+  }
+
+  TB.isTyping = true;
+  document.getElementById('tutorSend').disabled = true;
+  showTypingIndicator();
+
+  try {
+    const systemPrompt = buildSystemPrompt();
+    
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      ...TB.chatHistory.slice(-10).map(m => ({
+        role: m.role === 'assistant' ? 'assistant' : 'user',
+        content: m.content
+      })),
+      { role: 'user', content: question }
+    ];
+
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${GROQ_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "openai/gpt-oss-120b", 
+        messages: messages,
+        temperature: 0.6,
+        max_tokens: 2048 
+      })
+    });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.error?.message || `خطأ في الاتصال: ${response.status}`);
+    }
+
+    const data = await response.json();
+    let reply = data.choices[0].message.content;
+
+    // استخراج الأوامر
+    const actions = [];
+    reply = reply.replace(/\[ACTION:(\{[^}]+\})\]/g, (m, json) => {
+      try { actions.push(JSON.parse(json)); } catch (e) {}
+      return '';
+    }).trim();
+
+    hideTypingIndicator();
+    appendMessageToDOM('assistant', reply);
+
+    actions.forEach(a => setTimeout(() => executeAction(a), 300));
+
+  } catch (err) {
+    hideTypingIndicator();
+    let msg = '❗ عذراً، حدث خطأ:\n';
+    if (err.message.includes('401')) {
+      msg += '🔑 مفتاح Groq API غير صالح. تأكد من نسخه بشكل صحيح.';
+    } else if (err.message.includes('rate_limit')) {
+      msg += '⏱️ تجاوزت الحد المسموح. انتظر دقيقة ثم حاول مجدداً.';
+    } else {
+      msg += (err.message || 'تأكد من اتصالك بالإنترنت.');
+    }
+    appendMessageToDOM('assistant', msg);
+    console.error("Groq AI Error:", err);
+  } finally {
+    TB.isTyping = false;
+    document.getElementById('tutorSend').disabled = false;
+  }
+}
+
+function executeAction(action) {
+  if (!action || !action.type) return;
+  switch (action.type) {
+    case 'navigate':
+      if (action.target && document.querySelector(action.target)) {
+        closeTutor();
+        setTimeout(() => {
+          location.hash = action.target;
+          showToast(`📍 انتقل إلى ${action.target}`, 'info');
+        }, 200);
+      }
+      break;
+    case 'highlight':
+      if (action.target) highlightElement(action.target, action.color || 'yellow');
+      break;
+  }
+}
+
+function highlightElement(selector, color) {
+  const el = document.querySelector(selector);
+  if (!el) { showToast('⚠️ لم يتم العثور على العنصر', 'error'); return; }
+  el.querySelectorAll('mark.ai-highlight').forEach(m => m.replaceWith(...m.childNodes));
+  const mark = document.createElement('mark');
+  mark.className = 'ai-highlight';
+  while (el.firstChild) mark.appendChild(el.firstChild);
+  el.appendChild(mark);
+  closeTutor();
+  setTimeout(() => {
+    mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showToast('✨ تم التمييز', 'success');
+  }, 200);
+  setTimeout(() => { if (mark.parentNode) mark.replaceWith(...mark.childNodes); }, 15000);
+}
+
+function showToast(message, type = 'info') {
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + type;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.animation = 'toast-in .3s ease-out reverse';
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}
+
+function clearTutorChat() {
+  if (!confirm('مسح كل المحادثة؟')) return;
+  TB.chatHistory = [];
+  localStorage.removeItem('tb_chat_history');
+  document.getElementById('tutorChat').innerHTML = '';
+  openTutor();
+}
+
+function onSubjectChange() {
+  TB.currentSubject = document.getElementById('tutorSubject').value;
+  showToast(`📖 المادة: ${TB.currentSubject}`, 'info');
+}
+
+function updateCurrentSection() {
+  TB.currentSection = (location.hash || '#accueil').substring(1);
+}
+
+window.addEventListener('hashchange', () => {
+  updateCurrentSection();
+  document.querySelectorAll('.top-nav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === location.hash);
+  });
+});
+
+(function init() {
+  updateCurrentSection();
+  applyTheme(TB.theme);
+  if (TB.chatHistory.length > 0) renderChat();
+  console.log('✅ TutorBot prêt (Groq API)');
+})();
+</script>
+
+</body>
+</html>
